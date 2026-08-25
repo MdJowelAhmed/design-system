@@ -20,6 +20,7 @@ export {
   Container,
   Grid,
   FileInput,
+  Modal,
 } from './components';
 
 // Design Tokens & System Constants

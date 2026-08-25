@@ -23,6 +23,7 @@ export default defineConfig({
     alert: 'src/components/alert/index.ts',
     separator: 'src/components/separator/index.ts',
     dialog: 'src/components/dialog/index.ts',
+    modal: 'src/components/modal/index.ts',
     tooltip: 'src/components/tooltip/index.ts',
     'dropdown-menu': 'src/components/dropdown-menu/index.ts',
     tabs: 'src/components/tabs/index.ts',

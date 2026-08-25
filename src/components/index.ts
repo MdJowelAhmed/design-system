@@ -21,6 +21,7 @@ export * from './separator';
 
 // Advanced & Complex Components
 export * from './dialog';
+export * from './modal';
 export * from './tooltip';
 export * from './dropdown-menu';
 export * from './tabs';

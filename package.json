@@ -103,6 +103,11 @@
       "import": "./dist/dialog.mjs",
       "require": "./dist/dialog.js"
     },
+    "./modal": {
+      "types": "./dist/modal.d.ts",
+      "import": "./dist/modal.mjs",
+      "require": "./dist/modal.js"
+    },
     "./tooltip": {
       "types": "./dist/tooltip.d.ts",
       "import": "./dist/tooltip.mjs",
@@ -261,7 +266,7 @@
     "build:tokens": "tsx src/tokens/sd.config.ts",
     "build:bundle": "node --max-old-space-size=8192 ./node_modules/tsup/dist/cli-default.js",
     "build": "pnpm run build:tokens && pnpm run build:bundle",
-    "dev": "tsup --watch",
+    "dev": "node --max-old-space-size=8192 ./node_modules/tsup/dist/cli-default.js --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "type-check": "tsc --noEmit",

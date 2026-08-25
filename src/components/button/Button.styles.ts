@@ -59,31 +59,31 @@ export const buttonVariants = cva(
         variant: 'solid',
         color: 'primary',
         class:
-          'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 dark:bg-blue-500 dark:hover:bg-blue-600',
+          'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700',
       },
       {
         variant: 'solid',
         color: 'secondary',
         class:
-          'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800 dark:bg-purple-500 dark:hover:bg-purple-600',
+          'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800 dark:bg-purple-600 dark:hover:bg-purple-700',
       },
       {
         variant: 'solid',
         color: 'success',
         class:
-          'bg-emerald-600 text-white hover:bg-emerald-700 active:bg-emerald-800 dark:bg-emerald-500 dark:hover:bg-emerald-600',
+          'bg-emerald-600 text-white hover:bg-emerald-700 active:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700',
       },
       {
         variant: 'solid',
         color: 'warning',
         class:
-          'bg-amber-500 text-white hover:bg-amber-600 active:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-600',
+          'bg-amber-600 text-white hover:bg-amber-700 active:bg-amber-800 dark:bg-amber-600 dark:hover:bg-amber-700',
       },
       {
         variant: 'solid',
         color: 'danger',
         class:
-          'bg-red-600 text-white hover:bg-red-700 active:bg-red-800 dark:bg-red-500 dark:hover:bg-red-600',
+          'bg-red-600 text-white hover:bg-red-700 active:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700',
       },
       {
         variant: 'solid',

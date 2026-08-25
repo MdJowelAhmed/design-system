@@ -57,6 +57,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
 
         {status && (
           <span
+            role="status"
             aria-label={`Status: ${status}`}
             className={cn(
               'absolute right-0 bottom-0 shrink-0 rounded-full ring-2 ring-white dark:ring-neutral-900',

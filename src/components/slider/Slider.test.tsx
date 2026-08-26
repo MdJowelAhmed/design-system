@@ -9,4 +9,11 @@ describe('Slider', () => {
     );
     expect(container.firstChild).toBeInTheDocument();
   });
+
+  it('provides accessible name on slider thumb', () => {
+    const { getByRole } = render(
+      <Slider defaultValue={[50]} max={100} step={1} aria-label="Volume" />,
+    );
+    expect(getByRole('slider')).toHaveAttribute('aria-label', 'Volume');
+  });
 });

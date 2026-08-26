@@ -127,7 +127,7 @@ export function FieldCounter({ current, max }: FieldCounterProps) {
   return (
     <span className={cn(fieldCounterVariants({ state }))} aria-live="polite">
       {current}
-      <span className="text-neutral-400 dark:text-neutral-600">/{max}</span>
+      <span className="text-neutral-500 dark:text-neutral-400">/{max}</span>
     </span>
   );
 }

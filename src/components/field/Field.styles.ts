@@ -35,7 +35,7 @@ export const fieldMessageVariants = cva(
 export const fieldCounterVariants = cva('text-xs tabular-nums', {
   variants: {
     state: {
-      normal: 'text-neutral-400 dark:text-neutral-500',
+      normal: 'text-neutral-500 dark:text-neutral-400',
       // amber-700 ≈4.6:1 | red-600 ≈5.9:1 on white
       warning: 'text-amber-700 dark:text-amber-400',
       limit: 'font-medium text-red-600 dark:text-red-400',

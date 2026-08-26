@@ -87,36 +87,41 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
     return (
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild disabled={disabled || readOnly || loading}>
-          <div>
-            <Input
-              ref={ref}
-              id={id}
-              label={label}
-              helperText={helperText}
-              error={error}
-              warning={warning}
-              success={success}
-              required={required}
-              size={size}
-              variant={variant}
-              radius={radius}
-              fullWidth={fullWidth}
-              disabled={disabled}
-              readOnly={readOnly}
-              loading={loading}
-              clearable={clearable && Boolean(selectedDate)}
-              onClear={handleClear}
-              placeholder={defaultPlaceholder}
-              value={displayValue}
-              onChange={handleInputChange}
-              leftIcon={<CalendarIcon className="h-4 w-4" />}
-              className={className}
-              aria-haspopup="dialog"
-              aria-expanded={open}
-              {...props}
-            />
-          </div>
+        {/* asChild removed: PopoverTrigger renders its own <button> so Radix ARIA props
+            (aria-expanded, type="button") land on a real button element, not a div.
+            The wrapping button is visually invisible — Input handles all styling. */}
+        <PopoverTrigger
+          disabled={disabled || readOnly || loading}
+          className="w-full cursor-default p-0 text-left [all:unset] focus:outline-none"
+        >
+          <Input
+            ref={ref}
+            id={id}
+            label={label}
+            helperText={helperText}
+            error={error}
+            warning={warning}
+            success={success}
+            required={required}
+            size={size}
+            variant={variant}
+            radius={radius}
+            fullWidth={fullWidth}
+            disabled={disabled}
+            readOnly={readOnly}
+            loading={loading}
+            clearable={clearable && Boolean(selectedDate)}
+            onClear={(e) => {
+              e.stopPropagation();
+              handleClear();
+            }}
+            placeholder={defaultPlaceholder}
+            value={displayValue}
+            onChange={handleInputChange}
+            leftIcon={<CalendarIcon aria-hidden="true" className="h-4 w-4" />}
+            className={className}
+            {...props}
+          />
         </PopoverTrigger>
 
         {!disabled && !readOnly && (

@@ -32,7 +32,10 @@ export const SelectTrigger = forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+      <ChevronDown
+        className="ml-2 h-4 w-4 shrink-0 opacity-50"
+        aria-hidden="true"
+      />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -94,6 +97,7 @@ export function Select({
   size = 'md',
   fullWidth = true,
   className,
+  id: customId,
   value,
   onValueChange,
   defaultValue,
@@ -102,7 +106,8 @@ export function Select({
   ...props
 }: SelectProps) {
   const generatedId = useId();
-  const id = generatedId;
+  const id = customId ?? generatedId;
+  const messageId = `${id}-message`;
 
   return (
     <div
@@ -124,7 +129,15 @@ export function Select({
         disabled={disabled}
         {...props}
       >
-        <SelectTrigger size={size} error={Boolean(error)} className={className}>
+        <SelectTrigger
+          id={id}
+          size={size}
+          error={Boolean(error)}
+          aria-label={label ? undefined : placeholder}
+          aria-invalid={Boolean(error) || undefined}
+          aria-describedby={error || helperText ? messageId : undefined}
+          className={className}
+        >
           <SelectPrimitive.Value placeholder={placeholder} />
         </SelectTrigger>
 
@@ -146,11 +159,18 @@ export function Select({
       </SelectPrimitive.Root>
 
       {error ? (
-        <p className="text-xs font-medium text-red-500 dark:text-red-400">
+        <p
+          id={messageId}
+          role="alert"
+          className="text-xs font-medium text-red-600 dark:text-red-400"
+        >
           {error}
         </p>
       ) : helperText ? (
-        <p className="text-xs text-neutral-500 dark:text-neutral-400">
+        <p
+          id={messageId}
+          className="text-xs text-neutral-500 dark:text-neutral-400"
+        >
           {helperText}
         </p>
       ) : null}

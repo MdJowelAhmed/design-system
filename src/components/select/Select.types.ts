@@ -17,4 +17,5 @@ export interface SelectProps extends SelectPrimitive.SelectProps {
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   className?: string;
+  id?: string;
 }

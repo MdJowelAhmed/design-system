@@ -31,35 +31,43 @@ export function CalendarGrid({
   const daysGrid = getDaysInMonthGrid(viewDate);
 
   return (
-    <div className="pt-2">
-      {/* Days of week header */}
-      <div className="mb-1 grid grid-cols-7 gap-1 text-center">
+    // ARIA: grid > row (header) > columnheader | grid > row × N > gridcell > button
+    <div role="grid" aria-label="Calendar days" className="grid gap-1 pt-2">
+      {/* Header row — must be inside role="grid" to satisfy ARIA required-parent rule */}
+      <div role="row" className="grid grid-cols-7 gap-1 text-center">
         {WEEKDAYS.map((day) => (
           <span
             key={day}
-            className="py-1 text-[11px] font-semibold tracking-wider text-neutral-400 uppercase dark:text-neutral-500"
+            role="columnheader"
+            aria-label={day}
+            className="py-1 text-[11px] font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400"
           >
             {day}
           </span>
         ))}
       </div>
 
-      {/* Days Grid */}
-      <div className="grid grid-cols-7 gap-1" role="grid">
-        {daysGrid.map(({ date, isCurrentMonth }) => (
-          <CalendarDay
-            key={date.toISOString()}
-            date={date}
-            isCurrentMonth={isCurrentMonth}
-            selectedDate={selectedDate}
-            selectedRange={selectedRange}
-            restrictions={restrictions}
-            mode={mode}
-            onClick={onDateSelect}
-            onMouseEnter={onDateHover}
-          />
-        ))}
-      </div>
+      {/* Week rows */}
+      {Array.from({ length: Math.ceil(daysGrid.length / 7) }, (_, weekIdx) => (
+        <div key={weekIdx} role="row" className="grid grid-cols-7 gap-1">
+          {daysGrid
+            .slice(weekIdx * 7, weekIdx * 7 + 7)
+            .map(({ date, isCurrentMonth }) => (
+              <div key={date.toISOString()} role="gridcell">
+                <CalendarDay
+                  date={date}
+                  isCurrentMonth={isCurrentMonth}
+                  selectedDate={selectedDate}
+                  selectedRange={selectedRange}
+                  restrictions={restrictions}
+                  mode={mode}
+                  onClick={onDateSelect}
+                  onMouseEnter={onDateHover}
+                />
+              </div>
+            ))}
+        </div>
+      ))}
     </div>
   );
 }

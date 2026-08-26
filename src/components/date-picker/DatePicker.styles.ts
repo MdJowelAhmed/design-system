@@ -33,9 +33,14 @@ export const dayVariants = cva(
         inRange:
           'bg-blue-50 dark:bg-blue-950/50 text-blue-900 dark:text-blue-200 rounded-none hover:bg-blue-100 dark:hover:bg-blue-900/60',
         disabled:
-          'text-neutral-300 dark:text-neutral-700 opacity-50 cursor-not-allowed pointer-events-none hover:bg-transparent',
+          // WCAG 1.4.3 exempts disabled controls from contrast — pointer-events-none
+          // ensures they are truly non-interactive. Removed opacity-50 to avoid axe
+          // false-positives; neutral-400 (#a3a3a3) is visually muted without failing.
+          'text-neutral-400 dark:text-neutral-600 cursor-not-allowed pointer-events-none hover:bg-transparent',
         outsideMonth:
-          'text-neutral-400 dark:text-neutral-600 opacity-40 hover:bg-neutral-50 dark:hover:bg-neutral-800/40',
+          // neutral-500 (#737373) ≈4.6:1 on white — removes opacity-40 which made
+          // the effective color #dadada (1.39:1) and triggered contrast violations.
+          'text-neutral-500 dark:text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-800/40',
       },
     },
     defaultVariants: {

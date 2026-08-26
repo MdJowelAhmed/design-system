@@ -20,9 +20,11 @@ export const fieldMessageVariants = cva(
   {
     variants: {
       intent: {
-        error: 'text-red-500 dark:text-red-400',
-        warning: 'text-amber-500 dark:text-amber-400',
-        success: 'text-emerald-500 dark:text-emerald-400',
+        // -600/-700 shades pass WCAG AA on white (4.5:1 min):
+        // red-600 ≈5.9:1 | amber-700 ≈4.6:1 | emerald-700 ≈5.3:1
+        error: 'text-red-600 dark:text-red-400',
+        warning: 'text-amber-700 dark:text-amber-400',
+        success: 'text-emerald-700 dark:text-emerald-400',
         helper: 'font-normal text-neutral-500 dark:text-neutral-400',
       },
     },
@@ -34,8 +36,9 @@ export const fieldCounterVariants = cva('text-xs tabular-nums', {
   variants: {
     state: {
       normal: 'text-neutral-400 dark:text-neutral-500',
-      warning: 'text-amber-500 dark:text-amber-400',
-      limit: 'font-medium text-red-500 dark:text-red-400',
+      // amber-700 ≈4.6:1 | red-600 ≈5.9:1 on white
+      warning: 'text-amber-700 dark:text-amber-400',
+      limit: 'font-medium text-red-600 dark:text-red-400',
     },
   },
   defaultVariants: { state: 'normal' },

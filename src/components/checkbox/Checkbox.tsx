@@ -74,7 +74,8 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
         </div>
 
         {error && (
-          <p className="pl-6 text-xs font-medium text-red-500 dark:text-red-400">
+          // text-red-600 (#dc2626) ≈5.9:1 on white — fixes WCAG AA (was red-500 = 3.76:1)
+          <p className="pl-6 text-xs font-medium text-red-600 dark:text-red-400">
             {error}
           </p>
         )}

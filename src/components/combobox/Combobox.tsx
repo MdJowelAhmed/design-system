@@ -55,21 +55,31 @@ export const Combobox = forwardRef<HTMLButtonElement, ComboboxProps>(
             variant="outline"
             role="combobox"
             aria-expanded={open}
+            aria-label={
+              selectedOption ? `Selected: ${selectedOption.label}` : placeholder
+            }
             disabled={disabled}
             className={cn('w-[240px] justify-between font-normal', className)}
           >
-            <span className="truncate">
+            <span aria-hidden="true" className="truncate">
               {selectedOption ? selectedOption.label : placeholder}
             </span>
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <ChevronsUpDown
+              aria-hidden="true"
+              className="ml-2 h-4 w-4 shrink-0 opacity-50"
+            />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[240px] p-0 shadow-xl" align="start">
           <div className="flex items-center border-b border-neutral-200 px-3 py-2 dark:border-neutral-800">
-            <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+            <Search
+              aria-hidden="true"
+              className="mr-2 h-4 w-4 shrink-0 opacity-50"
+            />
             <input
               className="flex h-7 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-neutral-500 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder={searchPlaceholder}
+              aria-label={searchPlaceholder}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
@@ -96,6 +106,7 @@ export const Combobox = forwardRef<HTMLButtonElement, ComboboxProps>(
                     )}
                   >
                     <Check
+                      aria-hidden="true"
                       className={cn(
                         'text-primary-600 dark:text-primary-400 mr-2 h-4 w-4',
                         isSelected ? 'opacity-100' : 'opacity-0',

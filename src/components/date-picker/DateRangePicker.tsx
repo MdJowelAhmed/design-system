@@ -115,10 +115,7 @@ export const DateRangePicker = forwardRef<
               readOnly={readOnly}
               loading={loading}
               clearable={clearable && Boolean(selectedRange?.from)}
-              onClear={(e) => {
-                e.stopPropagation();
-                handleClear();
-              }}
+              onClear={handleClear}
               placeholder={placeholder}
               value={displayValue}
               leftIcon={<CalendarIcon aria-hidden="true" className="h-4 w-4" />}

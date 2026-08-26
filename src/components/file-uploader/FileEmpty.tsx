@@ -15,7 +15,10 @@ export const FileEmpty = forwardRef<HTMLDivElement, FileEmptyProps>(
     return (
       <div
         ref={ref}
-        className={cn('py-4 text-center text-xs text-neutral-400', className)}
+        className={cn(
+          'py-4 text-center text-xs text-neutral-500 dark:text-neutral-400',
+          className,
+        )}
         {...props}
       >
         {children ?? 'No files selected yet.'}

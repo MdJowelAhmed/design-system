@@ -32,7 +32,7 @@ export const FileItem = forwardRef<HTMLDivElement, FileItemProps>(
                 <p className="truncate text-sm font-medium text-neutral-900 dark:text-neutral-100">
                   {file.name}
                 </p>
-                <span className="shrink-0 text-xs text-neutral-400">
+                <span className="shrink-0 text-xs text-neutral-500 dark:text-neutral-400">
                   {formatFileSize(file.size)}
                 </span>
               </div>

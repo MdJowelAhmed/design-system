@@ -32,7 +32,10 @@ export const FileActions = forwardRef<HTMLDivElement, FileActionsProps>(
       >
         {file.status === 'success' && (
           <span title="Upload complete">
-            <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+            <CheckCircle2
+              className="h-5 w-5 text-emerald-600 dark:text-emerald-400"
+              aria-hidden="true"
+            />
           </span>
         )}
 
@@ -43,7 +46,7 @@ export const FileActions = forwardRef<HTMLDivElement, FileActionsProps>(
           disabled={disabled}
           aria-label={`Remove file ${file.name}`}
           onClick={handleRemove}
-          className="text-neutral-400 hover:text-rose-600 dark:hover:text-rose-400"
+          className="text-neutral-500 hover:text-rose-600 dark:text-neutral-400 dark:hover:text-rose-400"
         >
           <Trash2 className="h-4 w-4" />
         </IconButton>

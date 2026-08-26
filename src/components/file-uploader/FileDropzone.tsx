@@ -53,13 +53,13 @@ export const FileDropzone = forwardRef<HTMLDivElement, FileDropzoneProps>(
         ) : (
           <>
             <div className="rounded-full bg-neutral-100 p-3 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
-              {icon ?? <UploadCloud className="h-6 w-6" />}
+              {icon ?? <UploadCloud className="h-6 w-6" aria-hidden="true" />}
             </div>
             <div>
               <p className="font-semibold text-neutral-900 dark:text-neutral-100">
                 {title ?? 'Click to upload or drag & drop'}
               </p>
-              <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+              <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">
                 {description ?? 'SVG, PNG, JPG, PDF or GIF (max 10MB)'}
               </p>
             </div>

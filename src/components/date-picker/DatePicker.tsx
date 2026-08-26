@@ -117,10 +117,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               readOnly={readOnly}
               loading={loading}
               clearable={clearable && Boolean(selectedDate)}
-              onClear={(e) => {
-                e.stopPropagation();
-                handleClear();
-              }}
+              onClear={handleClear}
               placeholder={defaultPlaceholder}
               value={displayValue}
               onChange={handleInputChange}

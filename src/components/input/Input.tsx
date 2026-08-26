@@ -103,7 +103,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onChange?.(e);
     }
 
-    function handleClear() {
+    function handleClear(e: React.MouseEvent<HTMLButtonElement>) {
+      e.stopPropagation();
       if (!isControlled && innerRef.current) {
         innerRef.current.value = '';
         setCharCount(0);
@@ -125,7 +126,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         aria-label="Clear input"
         className={cn(inputSlotVariants.actionIcon)}
       >
-        <X />
+        <X aria-hidden="true" />
       </button>
     ) : rightIcon ? (
       <span className={cn(inputSlotVariants.icon)}>{rightIcon}</span>

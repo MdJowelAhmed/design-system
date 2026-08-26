@@ -52,7 +52,7 @@ export const Variants: StoryObj<typeof FileUploader> = {
   render: () => (
     <div className="flex w-[500px] flex-col gap-6">
       <div>
-        <h4 className="mb-2 text-xs font-semibold text-neutral-400">
+        <h4 className="mb-2 text-xs font-semibold text-neutral-600 dark:text-neutral-400">
           Default Dashed
         </h4>
         <FileUploader variant="default">
@@ -62,7 +62,7 @@ export const Variants: StoryObj<typeof FileUploader> = {
       </div>
 
       <div>
-        <h4 className="mb-2 text-xs font-semibold text-neutral-400">
+        <h4 className="mb-2 text-xs font-semibold text-neutral-600 dark:text-neutral-400">
           Outlined Solid
         </h4>
         <FileUploader variant="outlined">
@@ -72,7 +72,7 @@ export const Variants: StoryObj<typeof FileUploader> = {
       </div>
 
       <div>
-        <h4 className="mb-2 text-xs font-semibold text-neutral-400">
+        <h4 className="mb-2 text-xs font-semibold text-neutral-600 dark:text-neutral-400">
           Filled Background
         </h4>
         <FileUploader variant="filled">

@@ -15,7 +15,7 @@ export const FileProgress = forwardRef<HTMLDivElement, FileProgressProps>(
   ({ status = 'idle', progress = 0, error, className, ...props }, ref) => {
     if (status === 'error') {
       return (
-        <p className="mt-1 text-xs font-medium text-rose-500 dark:text-rose-400">
+        <p className="mt-1 text-xs font-medium text-rose-600 dark:text-rose-400">
           {error ?? 'Upload failed'}
         </p>
       );
@@ -24,8 +24,12 @@ export const FileProgress = forwardRef<HTMLDivElement, FileProgressProps>(
     if (status === 'uploading') {
       return (
         <div ref={ref} className={cn('mt-1.5 space-y-1', className)} {...props}>
-          <Progress value={progress} className="h-1.5" />
-          <div className="flex justify-between text-[11px] text-neutral-400">
+          <Progress
+            value={progress}
+            aria-label={`Upload progress: ${Math.round(progress)}%`}
+            className="h-1.5"
+          />
+          <div className="flex justify-between text-[11px] text-neutral-500 dark:text-neutral-400">
             <span>Uploading...</span>
             <span>{Math.round(progress)}%</span>
           </div>

@@ -20,7 +20,7 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
       return (
         <div className="relative flex w-full items-center py-2">
           <div className="flex-grow border-t border-neutral-200 dark:border-neutral-800" />
-          <span className="shrink-0 px-3 text-xs font-medium tracking-wider text-neutral-400 uppercase dark:text-neutral-500">
+          <span className="shrink-0 px-3 text-xs font-medium tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
             {label}
           </span>
           <div className="flex-grow border-t border-neutral-200 dark:border-neutral-800" />

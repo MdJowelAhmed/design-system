@@ -2,7 +2,7 @@
 
 import { forwardRef, useState } from 'react';
 import { Calendar as CalendarIcon } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '../popover';
+import { Popover, PopoverAnchor, PopoverContent } from '../popover';
 import { Input } from '../input';
 import { Calendar } from './Calendar';
 import type { DateRangePickerProps } from './DatePicker.types';
@@ -92,39 +92,44 @@ export const DateRangePicker = forwardRef<
 
     return (
       <Popover open={open} onOpenChange={setOpen}>
-        {/* asChild removed — see DatePicker.tsx for the full explanation */}
-        <PopoverTrigger
-          disabled={disabled || readOnly || loading}
-          className="w-full cursor-default p-0 text-left [all:unset] focus:outline-none"
-        >
-          <Input
-            ref={ref}
-            id={id}
-            label={label}
-            helperText={helperText}
-            error={error}
-            warning={warning}
-            success={success}
-            required={required}
-            size={size}
-            variant={variant}
-            radius={radius}
-            fullWidth={fullWidth}
-            disabled={disabled}
-            readOnly={readOnly}
-            loading={loading}
-            clearable={clearable && Boolean(selectedRange?.from)}
-            onClear={(e) => {
-              e.stopPropagation();
-              handleClear();
-            }}
-            placeholder={placeholder}
-            value={displayValue}
-            leftIcon={<CalendarIcon aria-hidden="true" className="h-4 w-4" />}
-            className={className}
-            {...props}
-          />
-        </PopoverTrigger>
+        {/* Same PopoverAnchor pattern as DatePicker — see DatePicker.tsx for rationale */}
+        <PopoverAnchor asChild>
+          <div
+            onClick={() => !disabled && !readOnly && !loading && setOpen(!open)}
+            className="cursor-pointer"
+          >
+            <Input
+              ref={ref}
+              id={id}
+              label={label}
+              helperText={helperText}
+              error={error}
+              warning={warning}
+              success={success}
+              required={required}
+              size={size}
+              variant={variant}
+              radius={radius}
+              fullWidth={fullWidth}
+              disabled={disabled}
+              readOnly={readOnly}
+              loading={loading}
+              clearable={clearable && Boolean(selectedRange?.from)}
+              onClear={(e) => {
+                e.stopPropagation();
+                handleClear();
+              }}
+              placeholder={placeholder}
+              value={displayValue}
+              leftIcon={<CalendarIcon aria-hidden="true" className="h-4 w-4" />}
+              className={className}
+              role="combobox"
+              aria-expanded={open}
+              aria-haspopup="dialog"
+              {...props}
+            />
+          </div>
+        </PopoverAnchor>
 
         {!disabled && !readOnly && (
           <PopoverContent

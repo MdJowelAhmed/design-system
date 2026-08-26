@@ -71,13 +71,13 @@ export const buttonVariants = cva(
         variant: 'solid',
         color: 'success',
         class:
-          'bg-emerald-600 text-white hover:bg-emerald-700 active:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700',
+          'bg-emerald-700 text-white hover:bg-emerald-800 active:bg-emerald-900 dark:bg-emerald-700 dark:hover:bg-emerald-800',
       },
       {
         variant: 'solid',
         color: 'warning',
         class:
-          'bg-amber-600 text-white hover:bg-amber-700 active:bg-amber-800 dark:bg-amber-600 dark:hover:bg-amber-700',
+          'bg-amber-700 text-white hover:bg-amber-800 active:bg-amber-900 dark:bg-amber-700 dark:hover:bg-amber-800',
       },
       {
         variant: 'solid',
@@ -109,13 +109,15 @@ export const buttonVariants = cva(
         variant: 'outline',
         color: 'success',
         class:
-          'border-emerald-500 text-emerald-600 hover:bg-emerald-50 active:bg-emerald-100 dark:border-emerald-400 dark:text-emerald-400 dark:hover:bg-emerald-950/40',
+          // text-emerald-700 (≈5.3:1 on white) fixes the WCAG AA contrast violation from emerald-600 (3.76:1)
+          'border-emerald-500 text-emerald-700 hover:bg-emerald-50 active:bg-emerald-100 dark:border-emerald-400 dark:text-emerald-300 dark:hover:bg-emerald-950/40',
       },
       {
         variant: 'outline',
         color: 'warning',
         class:
-          'border-amber-500 text-amber-600 hover:bg-amber-50 active:bg-amber-100 dark:border-amber-400 dark:text-amber-400 dark:hover:bg-amber-950/40',
+          // text-amber-700 (≈4.6:1 on white) fixes the WCAG AA contrast violation from amber-600 (3.18:1)
+          'border-amber-500 text-amber-700 hover:bg-amber-50 active:bg-amber-100 dark:border-amber-400 dark:text-amber-300 dark:hover:bg-amber-950/40',
       },
       {
         variant: 'outline',
@@ -185,13 +187,15 @@ export const buttonVariants = cva(
         variant: 'ghost',
         color: 'success',
         class:
-          'text-emerald-600 hover:bg-emerald-50 active:bg-emerald-100 dark:text-emerald-400 dark:hover:bg-emerald-950/40',
+          // text-emerald-700 fixes WCAG AA contrast (was emerald-600 = 3.76:1)
+          'text-emerald-700 hover:bg-emerald-50 active:bg-emerald-100 dark:text-emerald-300 dark:hover:bg-emerald-950/40',
       },
       {
         variant: 'ghost',
         color: 'warning',
         class:
-          'text-amber-600 hover:bg-amber-50 active:bg-amber-100 dark:text-amber-400 dark:hover:bg-amber-950/40',
+          // text-amber-700 fixes WCAG AA contrast (was amber-600 = 3.18:1)
+          'text-amber-700 hover:bg-amber-50 active:bg-amber-100 dark:text-amber-300 dark:hover:bg-amber-950/40',
       },
       {
         variant: 'ghost',
@@ -220,12 +224,14 @@ export const buttonVariants = cva(
       {
         variant: 'link',
         color: 'success',
-        class: 'text-emerald-600 dark:text-emerald-400',
+        // text-emerald-700 fixes WCAG AA contrast (was emerald-600 = 3.76:1)
+        class: 'text-emerald-700 dark:text-emerald-300',
       },
       {
         variant: 'link',
         color: 'warning',
-        class: 'text-amber-600 dark:text-amber-400',
+        // text-amber-700 fixes WCAG AA contrast (was amber-600 = 3.18:1)
+        class: 'text-amber-700 dark:text-amber-300',
       },
       {
         variant: 'link',

@@ -61,7 +61,7 @@ export const VariantColorMatrix: Story = {
     <div className="flex flex-col gap-4">
       {VARIANTS.map((variant) => (
         <div key={variant} className="flex flex-wrap items-center gap-3">
-          <span className="w-16 text-right font-mono text-xs text-neutral-500">
+          <span className="w-16 text-right font-mono text-xs text-neutral-600 dark:text-neutral-400">
             {variant}
           </span>
           {COLORS.map((color) => (

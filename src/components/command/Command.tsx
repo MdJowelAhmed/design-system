@@ -27,6 +27,7 @@ export const Command = forwardRef<HTMLDivElement, CommandProps>(
       <CommandContext.Provider value={{ search, setSearch }}>
         <Dialog open={open} onOpenChange={onOpenChange}>
           <DialogContent
+            aria-label="Command palette"
             className={cn('max-w-lg overflow-hidden p-0 shadow-2xl', className)}
             {...props}
           >
@@ -52,11 +53,12 @@ export const CommandInput = forwardRef<
 
   return (
     <div className="flex items-center border-b border-neutral-200 px-3 dark:border-neutral-800">
-      <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+      <Search aria-hidden="true" className="mr-2 h-4 w-4 shrink-0 opacity-50" />
       <input
         ref={ref}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        aria-label={props.placeholder ?? 'Search'}
         className={cn(
           'flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-neutral-500 disabled:cursor-not-allowed disabled:opacity-50',
           className,
@@ -117,8 +119,9 @@ export const CommandShortcut = ({
   ...props
 }: React.HTMLAttributes<HTMLSpanElement>) => (
   <span
+    // text-neutral-500 (#737373) ≈4.6:1 on white — fixes WCAG AA (was neutral-400 = 2.52:1)
     className={cn(
-      'ml-auto font-mono text-xs tracking-widest text-neutral-400 dark:text-neutral-500',
+      'ml-auto font-mono text-xs tracking-widest text-neutral-500 dark:text-neutral-400',
       className,
     )}
     {...props}

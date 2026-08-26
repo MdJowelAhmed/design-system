@@ -25,7 +25,7 @@ export const FileError = forwardRef<HTMLDivElement, FileErrorProps>(
         {...props}
       >
         <div className="flex items-start gap-2">
-          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-600 dark:text-rose-400" />
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-700 dark:text-rose-400" />
           <div>
             {children ?? (
               <ul className="list-disc space-y-0.5 pl-4">
@@ -43,7 +43,7 @@ export const FileError = forwardRef<HTMLDivElement, FileErrorProps>(
           size="sm"
           aria-label="Dismiss errors"
           onClick={clearErrors}
-          className="text-rose-600 hover:bg-rose-100 dark:text-rose-400 dark:hover:bg-rose-900/50"
+          className="text-rose-700 hover:bg-rose-100 dark:text-rose-400 dark:hover:bg-rose-900/50"
         >
           <X className="h-3.5 w-3.5" />
         </IconButton>

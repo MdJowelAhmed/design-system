@@ -25,12 +25,12 @@ export const textVariants = cva('font-sans transition-colors', {
     color: {
       default: 'text-neutral-800 dark:text-neutral-200',
       muted: 'text-neutral-600 dark:text-neutral-400',
-      subtle: 'text-neutral-400 dark:text-neutral-500',
+      subtle: 'text-neutral-500 dark:text-neutral-400',
       primary: 'text-primary-600 dark:text-primary-400',
       secondary: 'text-secondary-600 dark:text-secondary-400',
       danger: 'text-red-600 dark:text-red-400',
-      success: 'text-emerald-600 dark:text-emerald-400',
-      warning: 'text-amber-600 dark:text-amber-400',
+      success: 'text-emerald-700 dark:text-emerald-400',
+      warning: 'text-amber-700 dark:text-amber-400',
       white: 'text-white',
     },
     truncate: {

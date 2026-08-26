@@ -148,6 +148,21 @@ export const ClickableKeyboardInteractive: StoryObj = {
 };
 
 export const LoadingState: StoryObj = {
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          {
+            // False-positive: axe cannot resolve the effective background of text nodes
+            // that are physically occluded by the loading overlay. The children wrapper
+            // is `inert` (removed from a11y tree) so this is not a real contrast failure.
+            id: 'color-contrast',
+            enabled: false,
+          },
+        ],
+      },
+    },
+  },
   render: () => (
     <Card loading className="w-[360px]">
       <CardHeader>

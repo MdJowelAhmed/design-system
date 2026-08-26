@@ -62,11 +62,24 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         )}
         {...props}
       >
-        {children}
+        {/* `inert` removes the occluded subtree from the a11y tree and from axe's
+            color-contrast checks. React 19 supports `inert` as a native boolean prop. */}
+        <div
+          inert={loading || undefined}
+          className={loading ? 'contents' : undefined}
+        >
+          {children}
+        </div>
 
         {loading && (
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/70 backdrop-blur-xs transition-opacity dark:bg-neutral-900/70">
-            <Loader2 className="text-primary-600 dark:text-primary-400 h-6 w-6 animate-spin" />
+          <div
+            role="status"
+            className="absolute inset-0 z-10 flex items-center justify-center bg-white/70 backdrop-blur-xs transition-opacity dark:bg-neutral-900/70"
+          >
+            <Loader2
+              className="text-primary-600 dark:text-primary-400 h-6 w-6 animate-spin"
+              aria-hidden="true"
+            />
             <span className="sr-only">Loading card content</span>
           </div>
         )}

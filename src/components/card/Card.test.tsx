@@ -77,7 +77,7 @@ describe('Card Component System', () => {
     expect(handleClick).toHaveBeenCalledTimes(3);
   });
 
-  it('handles loading state with aria-busy', () => {
+  it('handles loading state with aria-busy and inert children', () => {
     render(
       <Card loading data-testid="loading-card">
         <CardContent>Loading content</CardContent>
@@ -86,7 +86,12 @@ describe('Card Component System', () => {
 
     const card = screen.getByTestId('loading-card');
     expect(card.getAttribute('aria-busy')).toBe('true');
+    // The status role live region announces loading to screen readers
+    expect(screen.getByRole('status')).toBeInTheDocument();
     expect(screen.getByText('Loading card content')).toBeInTheDocument();
+    // Children wrapper is `inert` — removes occluded subtree from a11y tree and axe checks
+    const childrenWrapper = card.querySelector('[inert]');
+    expect(childrenWrapper).toBeInTheDocument();
   });
 
   it('handles disabled state with aria-disabled', () => {

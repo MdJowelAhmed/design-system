@@ -6,13 +6,18 @@ import type { ProgressProps } from './Progress.types';
 export const Progress = forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressProps
->(({ className, value = 0, ...props }, ref) => (
+>(({ className, value = 0, 'aria-label': ariaLabel, ...props }, ref) => (
   <ProgressPrimitive.Root
     ref={ref}
+    aria-label={
+      ariaLabel ??
+      (value !== undefined ? `Progress: ${Math.round(value)}%` : 'Progress')
+    }
     className={cn(
       'relative h-2 w-full overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-800',
       className,
     )}
+    value={value}
     {...props}
   >
     <ProgressPrimitive.Indicator

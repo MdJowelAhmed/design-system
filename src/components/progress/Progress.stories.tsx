@@ -11,9 +11,13 @@ export default meta;
 type Story = StoryObj<typeof Progress>;
 
 export const Default: Story = {
-  render: () => <Progress value={60} className="w-[60%]" />,
+  render: () => (
+    <Progress value={60} aria-label="Loading progress" className="w-[60%]" />
+  ),
 };
 
 export const Complete: Story = {
-  render: () => <Progress value={100} className="w-[60%]" />,
+  render: () => (
+    <Progress value={100} aria-label="Completed progress" className="w-[60%]" />
+  ),
 };

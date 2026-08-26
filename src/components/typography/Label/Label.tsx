@@ -30,7 +30,12 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(
       >
         {children}
         {required && (
-          <span className="aria-hidden:true ml-0.5 text-red-500">*</span>
+          <span
+            className="ml-0.5 text-red-600 dark:text-red-400"
+            aria-hidden="true"
+          >
+            *
+          </span>
         )}
       </Component>
     );

@@ -21,8 +21,12 @@ export const Default: StoryObj = {
           @peduarte starred 3 repositories
         </h4>
         <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="xs">
-            <ChevronsUpDown className="h-4 w-4" />
+          <Button
+            variant="ghost"
+            size="xs"
+            aria-label="Toggle starred repositories"
+          >
+            <ChevronsUpDown className="h-4 w-4" aria-hidden="true" />
           </Button>
         </CollapsibleTrigger>
       </div>

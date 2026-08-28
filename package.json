@@ -268,7 +268,7 @@
     "build": "pnpm run build:tokens && pnpm run build:bundle",
     "dev": "node --max-old-space-size=8192 ./node_modules/tsup/dist/cli-default.js --watch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "node --max-old-space-size=8192 ./node_modules/storybook/bin/index.cjs build",
     "type-check": "tsc --noEmit",
     "lint": "eslint src/",
     "test": "vitest run",

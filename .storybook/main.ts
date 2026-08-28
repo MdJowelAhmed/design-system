@@ -14,10 +14,10 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
-  viteFinal: async (viteConfig) => {
-    viteConfig.plugins = viteConfig.plugins || [];
-    viteConfig.plugins.push(tailwindcss());
-    return viteConfig;
+  viteFinal: async (config) => {
+    config.plugins = config.plugins || [];
+    config.plugins.push(tailwindcss());
+    return config;
   },
   docs: {
     autodocs: 'tag',

@@ -1,15 +1,15 @@
 # 🎨 My Design System
 
-A modern, production-grade, accessible **React 19 Design System & UI Component Library** built with TypeScript, Tailwind CSS v4, Radix UI primitives, and Style Dictionary tokens.
+A modern, production-grade, accessible **React 19 Design System & UI Component Library** built with TypeScript, Tailwind CSS v4, Radix UI primitives, Framer Motion, and Style Dictionary v4 design tokens.
 
 ---
 
-## ⚡ Features
+## ⚡ Key Features
 
-- **🎨 18+ Accessible UI Components**: Button, Input, Textarea, Select, Checkbox, Radio, Switch, Badge, Avatar, Card, Alert, Separator, Dialog/Modal, Tooltip, Dropdown Menu, Tabs, Accordion, and Toast Notification System.
-- **🌓 Theme Engine**: Built-in `ThemeProvider` and `useTheme` hook with Light, Dark, and System preference support.
-- **🪙 Design Tokens**: Tokens powered by **Style Dictionary v4** auto-generating CSS variables and TypeScript constants.
-- **📦 Single Repository Architecture**: Clean bundling using `tsup` producing tree-shakeable **ESM**, **CommonJS**, **TypeScript declarations**, and **CSS stylesheets**.
+- **🎨 45+ Production-Grade UI Components**: Button, Input, PasswordInput, SearchInput, Select, Combobox, Checkbox, Radio, Switch, Slider, Toggle, Field, FileUploader, DatePicker, DateRangePicker, Card, Table, Badge, Avatar, Separator, Typography, Layout, ScrollArea, Carousel, Breadcrumb, Pagination, Tabs, Accordion, Collapsible, Dropdown Menu, Context Menu, Menubar, Navigation Menu, Command (Palette), Dialog, Modal, Sheet, Popover, Hover Card, Tooltip, Toast, Alert, Progress, Skeleton, and Motion primitives.
+- **🌓 Theme Engine**: Built-in `ThemeProvider`, `ThemeCustomizer`, and `useTheme` hook with Light, Dark, System preference support, and 8 brand accent palettes (`indigo`, `emerald`, `violet`, `rose`, `amber`, `blue`, `cyan`, `zinc`).
+- **🪙 Design Tokens**: Powered by **Style Dictionary v4** auto-generating DTCG CSS variables and TypeScript constants.
+- **📦 Single Repository Architecture & Modular Subpath Exports**: Clean bundling using `tsup` producing tree-shakeable **ESM**, **CommonJS**, **TypeScript declarations**, and subpath imports (`my-design-system/button`, `my-design-system/form`, `my-design-system/date-picker`, etc.).
 - **🧪 100% Test Coverage for Primitives**: Unit testing using **Vitest** and `@testing-library/react`.
 - **📖 Interactive Storybook 8**: Comprehensive documentation site and interactive component showcase.
 
@@ -68,12 +68,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 import React from 'react';
 import {
   Button,
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
+  DatePicker,
+  FileUploader,
   ToastProvider,
   useToast,
   Tabs,
@@ -98,125 +94,37 @@ function ProfileSection() {
           })
         }
       >
-        Save Profile
+        Save Settings
       </Button>
 
-      {/* Modal Dialog */}
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline">Edit Settings</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Account Settings</DialogTitle>
-            <DialogDescription>
-              Manage your personal preferences and notification settings.
-            </DialogDescription>
-          </DialogHeader>
+      {/* Date Picker */}
+      <DatePicker placeholder="Select birth date" />
 
-          <Tabs defaultValue="account" className="mt-4 w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="account">Account</TabsTrigger>
-              <TabsTrigger value="security">Security</TabsTrigger>
-            </TabsList>
-            <TabsContent value="account" className="rounded-md border p-4">
-              Account details & info...
-            </TabsContent>
-            <TabsContent value="security" className="rounded-md border p-4">
-              Password & Two-Factor Authentication...
-            </TabsContent>
-          </Tabs>
-        </DialogContent>
-      </Dialog>
+      {/* File Uploader */}
+      <FileUploader maxFiles={3} accept="image/*" />
     </div>
   );
 }
-
-export default function App() {
-  return (
-    <ToastProvider>
-      <ProfileSection />
-    </ToastProvider>
-  );
-}
 ```
 
 ---
 
-## 🗂️ Component Catalog
+## 📖 Storybook & Live Documentation
 
-| Category                | Components                                                             | Description                                                                         |
-| :---------------------- | :--------------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
-| **Form Inputs**         | `Button`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch` | Accessible, styled form controls with loading states and size variants.             |
-| **Data Display**        | `Badge`, `Avatar`, `Card`, `Separator`, `Alert`                        | Information presentation cards, badges, indicators, and alerts.                     |
-| **Overlays & Popups**   | `Dialog` (Modal), `Tooltip`, `DropdownMenu`, `Toast`                   | Accessible Radix-powered modals, tooltips, menus, and toast notifications.          |
-| **Navigation & Layout** | `Tabs`, `Accordion`                                                    | Interactive tab panels and expandable FAQ accordions with smooth animations.        |
-| **System Tools**        | `ThemeProvider`, `useTheme`, `useMediaQuery`, `cn`, `tokens`           | Theme manager, responsive hooks, class merger utility, and design token references. |
-
----
-
-## 🛠️ Local Development & Scripts
-
-Clone the repository and install dependencies:
+Run Storybook locally:
 
 ```bash
-# Clone repository
-git clone https://github.com/MdJowelAhmed/learning-design-system.git
-cd my-design-system
-
-# Install dependencies
-pnpm install
-
-# Build tokens and library bundle (CJS, ESM, Types, CSS)
-pnpm build
-
-# Start Tsup watch mode
-pnpm dev
-
-# Launch Storybook documentation explorer (http://localhost:6006)
-pnpm storybook
-
-# Build Storybook static production site
-pnpm run build-storybook
-
-# Run Vitest unit test suite
-pnpm test
-
-# Run ESLint & Type-checking
-pnpm lint
-pnpm type-check
+pnpm run storybook
 ```
 
----
+Build static Storybook:
 
-## 📁 Repository Folder Structure
-
-```text
-my-design-system/
-├── .github/
-│   └── workflows/
-│       ├── ci.yml            # Automated CI Testing, Linting & Storybook build
-│       └── publish.yml       # Automated NPM publishing workflow
-├── .storybook/               # Storybook 8 configuration & previews
-├── src/
-│   ├── components/           # 18+ UI Components & story files
-│   ├── tokens/               # Style Dictionary DTCG tokens & config
-│   ├── theme/                # ThemeProvider & theme script helpers
-│   ├── hooks/                # Custom React hooks (useMediaQuery, etc.)
-│   ├── icons/                # Lucide React icon wrappers
-│   ├── utils/                # cn utility, a11y helpers, shared types
-│   ├── styles/               # Global CSS stylesheet & keyframe animations
-│   ├── stories/              # Storybook documentation pages
-│   └── index.ts              # Unified entry point for library exports
-├── dist/                     # Compiled CJS, ESM, Types, and CSS artifacts
-├── package.json              # Single package configuration
-├── tsconfig.json             # TypeScript path aliases (@/components, etc.)
-├── tsup.config.ts            # Bundling configuration
-└── vitest.config.ts          # Vitest testing setup
+```bash
+pnpm run build-storybook
 ```
 
 ---
 
 ## 📄 License
 
-Distributed under the [MIT License](LICENSE).
+MIT © [Md Jowel Ahmed](https://github.com/MdJowelAhmed)

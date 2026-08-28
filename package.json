@@ -2,6 +2,9 @@
   "name": "my-design-system",
   "version": "1.0.0",
   "description": "Unified React Design System & Component Library",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -268,7 +271,7 @@
     "build": "pnpm run build:tokens && pnpm run build:bundle",
     "dev": "node --max-old-space-size=8192 ./node_modules/tsup/dist/cli-default.js --watch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "cross-env STORYBOOK_DISABLE_TELEMETRY=1 NODE_OPTIONS=--max-old-space-size=8192 storybook build",
+    "build-storybook": "pnpm run build:tokens && cross-env STORYBOOK_DISABLE_TELEMETRY=1 NODE_OPTIONS=--max-old-space-size=8192 storybook build",
     "type-check": "tsc --noEmit",
     "lint": "eslint src/",
     "test": "vitest run",

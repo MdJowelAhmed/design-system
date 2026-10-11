@@ -33,7 +33,7 @@ function buildThemePreset() {
   );
 
   const preset = [
-    '/* my-design-system Tailwind v4 preset. Usage: @import "tailwindcss"; @import "my-design-system/theme.css"; */',
+    '/* my-design-system Tailwind v4 preset. Usage: @import "tailwindcss"; @import "jowel-ahmed-design-system/theme.css"; */',
     read('generated/tokens.css'),
     read('generated/theme.css'),
     withoutLocalImports,

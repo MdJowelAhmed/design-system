@@ -4,7 +4,7 @@ import { Meta } from '@storybook/blocks';
 
 # 🎨 Enterprise Design System
 
-Welcome to the official component library and interactive documentation hub for **`my-design-system`**. Built with **React 19**, **TypeScript**, **Tailwind CSS v4**, **Radix UI**, and **Style Dictionary v4**.
+Welcome to the official component library and interactive documentation hub for **`jowel-ahmed-design-system`**. Built with **React 19**, **TypeScript**, **Tailwind CSS v4**, **Radix UI**, and **Style Dictionary v4**.
 
 ---
 
@@ -12,7 +12,7 @@ Welcome to the official component library and interactive documentation hub for 
 
 - **Single Repository Architecture:** Unified single-package structure built with `tsup`, `vitest`, and `storybook 8`.
 - **45+ Production-Grade UI Components:** Fully accessible (WAI-ARIA), responsive, dark-mode ready components.
-- **Subpath Export Optimization:** Tree-shakeable modular subpath imports (`my-design-system/button`, `my-design-system/date-picker`, `my-design-system/form`, etc.) for optimal bundle performance.
+- **Subpath Export Optimization:** Tree-shakeable modular subpath imports (`jowel-ahmed-design-system/button`, `jowel-ahmed-design-system/date-picker`, `jowel-ahmed-design-system/form`, etc.) for optimal bundle performance.
 - **Form & Schema Validation:** Built-in `react-hook-form` + `zod` schema validation primitives (`FormField`, `Field`, `FormItem`).
 - **Advanced Micro-Animations:** Fluid physics spring animations powered by `framer-motion` (`FadeIn`, `SlideIn`, `ScaleIn`).
 - **Design Token System:** Powered by **Style Dictionary v4** auto-generating DTCG-compliant CSS Variables and TypeScript constants.
@@ -72,23 +72,23 @@ Welcome to the official component library and interactive documentation hub for 
 
 ```tsx
 // Root Export (All Components)
-import { Button, Card, DatePicker, ThemeProvider } from 'my-design-system';
+import { Button, Card, DatePicker, ThemeProvider } from 'jowel-ahmed-design-system';
 
 // Modular Subpath Exports (Optimized Tree-Shaking)
-import { Button } from 'my-design-system/button';
-import { DatePicker, DateRangePicker } from 'my-design-system/date-picker';
-import { FileUploader } from 'my-design-system/file-uploader';
-import { Form, FormField } from 'my-design-system/form';
-import { Table } from 'my-design-system/table';
-import { Carousel } from 'my-design-system/carousel';
+import { Button } from 'jowel-ahmed-design-system/button';
+import { DatePicker, DateRangePicker } from 'jowel-ahmed-design-system/date-picker';
+import { FileUploader } from 'jowel-ahmed-design-system/file-uploader';
+import { Form, FormField } from 'jowel-ahmed-design-system/form';
+import { Table } from 'jowel-ahmed-design-system/table';
+import { Carousel } from 'jowel-ahmed-design-system/carousel';
 import {
   CommandDialog,
   CommandInput,
   CommandItem,
-} from 'my-design-system/command';
-import { ThemeProvider, useTheme } from 'my-design-system/theme';
-import { FadeIn, SlideIn } from 'my-design-system/motion';
-import { useToast } from 'my-design-system/toast';
+} from 'jowel-ahmed-design-system/command';
+import { ThemeProvider, useTheme } from 'jowel-ahmed-design-system/theme';
+import { FadeIn, SlideIn } from 'jowel-ahmed-design-system/motion';
+import { useToast } from 'jowel-ahmed-design-system/toast';
 ```
 
 ---
@@ -100,7 +100,7 @@ import { useToast } from 'my-design-system/toast';
 In your root application file (`src/main.tsx` or `app/layout.tsx`):
 
 ```tsx
-import 'my-design-system/styles.css';
+import 'jowel-ahmed-design-system/styles.css';
 ```
 
 ### 2. Wrap Application with ThemeProvider
@@ -108,8 +108,8 @@ import 'my-design-system/styles.css';
 ```tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider } from 'my-design-system/theme';
-import 'my-design-system/styles.css'; // or, with Tailwind v4: @import 'my-design-system/theme.css' in your CSS
+import { ThemeProvider } from 'jowel-ahmed-design-system/theme';
+import 'jowel-ahmed-design-system/styles.css'; // or, with Tailwind v4: @import 'jowel-ahmed-design-system/theme.css' in your CSS
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -1,5 +1,5 @@
 // Single source of truth for package entry points.
-// Every folder in src/components with an index.ts becomes `my-design-system/<folder>`.
+// Every folder in src/components with an index.ts becomes `jowel-ahmed-design-system/<folder>`.
 // Used by tsup.config.ts, scripts/sync-exports.mjs and the architecture test.
 import { existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';

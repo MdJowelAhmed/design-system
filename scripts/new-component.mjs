@@ -120,5 +120,5 @@ console.log(`
 ✅ Created ${dir}
    - ${name}.tsx / .styles.ts / .types.ts / .test.tsx / .stories.tsx / index.ts
    - added to src/components/index.ts
-   - added "my-design-system/${folder}" to package.json exports
+   - added "jowel-ahmed-design-system/${folder}" to package.json exports
 `);

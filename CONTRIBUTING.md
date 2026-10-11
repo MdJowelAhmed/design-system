@@ -48,7 +48,7 @@ src/components/my-thing/
   index.ts             public API of the folder
 ```
 
-The folder name automatically becomes the subpath `my-design-system/my-thing` — tsup entries and `package.json#exports` are generated from the folders (`scripts/entries.mjs`). Don't edit `exports` by hand; run `pnpm sync:exports`.
+The folder name automatically becomes the subpath `jowel-ahmed-design-system/my-thing` — tsup entries and `package.json#exports` are generated from the folders (`scripts/entries.mjs`). Don't edit `exports` by hand; run `pnpm sync:exports`.
 
 The architecture test fails if a component is missing a test or story, isn't re-exported from `src/components/index.ts`, or `exports` is stale.
 

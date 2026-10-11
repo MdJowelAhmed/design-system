@@ -5,14 +5,14 @@ An accessible **React 18/19 component library** built with TypeScript, Tailwind 
 - **45+ components**: forms, overlays, navigation, data display, layout and motion.
 - **One source of truth for design**: every color, font, radius, shadow and easing lives in `src/tokens/*.json`. Change a token and the CSS variables, Tailwind utilities, TypeScript constants and every component update together.
 - **Theming**: light, dark and system modes, plus 8 brand palettes (`blue` (default), `indigo`, `violet`, `emerald`, `rose`, `amber`, `cyan`, `zinc`), switchable at runtime.
-- **Tree-shakeable**: ESM + CJS + types, with a subpath for every component (`my-design-system/button`, `my-design-system/date-picker`, ...). Works in the Next.js App Router (`"use client"` is added by the build).
+- **Tree-shakeable**: ESM + CJS + types, with a subpath for every component (`jowel-ahmed-design-system/button`, `jowel-ahmed-design-system/date-picker`, ...). Works in the Next.js App Router (`"use client"` is added by the build).
 
 ---
 
 ## Installation
 
 ```bash
-pnpm add my-design-system
+pnpm add jowel-ahmed-design-system
 ```
 
 `react` and `react-dom` (18 or 19) are peer dependencies.
@@ -22,7 +22,7 @@ pnpm add my-design-system
 **A. No Tailwind in your app** — import the precompiled stylesheet once:
 
 ```tsx
-import 'my-design-system/styles.css';
+import 'jowel-ahmed-design-system/styles.css';
 ```
 
 **B. Your app already uses Tailwind v4** — use the preset instead, so you get one stylesheet and can use the design-system tokens (`bg-primary-600`, `text-muted-foreground`, ...) in your own code:
@@ -30,13 +30,13 @@ import 'my-design-system/styles.css';
 ```css
 /* app.css */
 @import 'tailwindcss';
-@import 'my-design-system/theme.css';
+@import 'jowel-ahmed-design-system/theme.css';
 ```
 
 ## Theme provider
 
 ```tsx
-import { ThemeProvider } from 'my-design-system/theme';
+import { ThemeProvider } from 'jowel-ahmed-design-system/theme';
 
 <ThemeProvider defaultTheme="system" defaultBrandColor="blue">
   <App />
@@ -46,7 +46,7 @@ import { ThemeProvider } from 'my-design-system/theme';
 For SSR (Next.js), avoid a flash of the wrong theme by injecting the script in `<head>`:
 
 ```tsx
-import { themeScript } from 'my-design-system/theme';
+import { themeScript } from 'jowel-ahmed-design-system/theme';
 
 <script dangerouslySetInnerHTML={{ __html: themeScript }} />;
 ```
@@ -54,9 +54,9 @@ import { themeScript } from 'my-design-system/theme';
 ## Usage
 
 ```tsx
-import { Button } from 'my-design-system/button';
-import { ToastProvider, useToast } from 'my-design-system/toast';
-import { Search } from 'my-design-system/icons';
+import { Button } from 'jowel-ahmed-design-system/button';
+import { ToastProvider, useToast } from 'jowel-ahmed-design-system/toast';
+import { Search } from 'jowel-ahmed-design-system/icons';
 
 function SaveButton() {
   const { addToast } = useToast();
@@ -74,7 +74,7 @@ function SaveButton() {
 
 Status variants are the same everywhere: `info | success | warning | danger`.
 
-Icons are not re-exported from the root entry (their names clash with components); import them from `my-design-system/icons`.
+Icons are not re-exported from the root entry (their names clash with components); import them from `jowel-ahmed-design-system/icons`.
 
 ---
 

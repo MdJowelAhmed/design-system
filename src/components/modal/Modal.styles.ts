@@ -15,7 +15,7 @@ export const modalContentVariants = cva(
       variant: {
         default: 'border-neutral-200 dark:border-neutral-800',
         destructive:
-          'border-red-500/40 dark:border-red-500/30 ring-1 ring-red-500/20',
+          'border-danger-500/40 dark:border-danger-500/30 ring-1 ring-danger-500/20',
       },
     },
     defaultVariants: {

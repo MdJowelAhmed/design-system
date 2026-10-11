@@ -15,7 +15,7 @@ export const Toggle = forwardRef<
   <TogglePrimitive.Root
     ref={ref}
     className={cn(
-      'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-neutral-200 data-[state=on]:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 dark:data-[state=on]:bg-neutral-800 dark:data-[state=on]:text-neutral-50',
+      'focus-visible:ring-primary-500 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:ring-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-neutral-200 data-[state=on]:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 dark:data-[state=on]:bg-neutral-800 dark:data-[state=on]:text-neutral-50',
       variant === 'outline' &&
         'border border-neutral-200 bg-transparent hover:bg-neutral-100 dark:border-neutral-800 dark:hover:bg-neutral-800',
       size === 'sm' && 'h-8 min-w-8 px-2',

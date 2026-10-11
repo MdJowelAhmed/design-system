@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Code2, Layers, Sparkles } from 'lucide-react';
+import { Code2, Layers, Sparkles } from '../../icons';
 import { Grid } from '../layout';
 import {
   NavigationMenu,
@@ -44,7 +44,7 @@ export const MegaMenu: StoryObj<typeof NavigationMenu> = {
                 </NavigationMenuLink>
                 <NavigationMenuLink href="/card">
                   <div className="flex items-center gap-2 font-semibold">
-                    <Sparkles className="h-4 w-4 text-purple-500" /> Cards &
+                    <Sparkles className="text-secondary-500 h-4 w-4" /> Cards &
                     Containers
                   </div>
                   <p className="mt-1 text-xs text-neutral-500">
@@ -59,7 +59,7 @@ export const MegaMenu: StoryObj<typeof NavigationMenu> = {
                 </div>
                 <NavigationMenuLink href="/docs">
                   <div className="flex items-center gap-2 font-semibold">
-                    <Code2 className="h-4 w-4 text-emerald-500" /> Documentation
+                    <Code2 className="text-success-500 h-4 w-4" /> Documentation
                   </div>
                   <p className="mt-1 text-xs text-neutral-500">
                     API specifications and guides.

@@ -1,0 +1,14 @@
+---
+description: Conventions for the my-design-system component library
+alwaysApply: true
+---
+
+Follow CONTRIBUTING.md. The essentials:
+
+- Colors/fonts/radii/shadows come only from `src/tokens/*.json`. Use token classes (`primary`, `secondary`, `neutral`, `success`, `warning`, `danger`, `info`, `background`, `foreground`, `muted`, `muted-foreground`, `border`, `ring`). Never default Tailwind palette classes (`bg-blue-500`) or arbitrary colors (`bg-[#fff]`). After editing tokens run `pnpm build:tokens`; never edit `generated/` folders.
+- New components: run `pnpm new:component <kebab-name>`. Each folder needs `X.tsx`, `X.styles.ts` (cva), `X.types.ts`, `X.test.tsx`, `X.stories.tsx`, `index.ts`, and must be exported from `src/components/index.ts`. Don't edit `package.json#exports`; run `pnpm sync:exports`.
+- No `'use client'` in source. Import icons from the local `icons` module, not `lucide-react`.
+- Reuse `cn`, `mergeRefs`, `useClipboard`, `useDisclosure`, `Field*` components and Radix primitives instead of re-implementing.
+- Status variants are `info | success | warning | danger` (`StatusVariant`).
+- Accessible by default: `type="button"`, `aria-label` on icon-only buttons, `role="alert"` + `aria-describedby` for errors.
+- No `any`, no unused vars, `import type` for types. Run `pnpm validate` before finishing.

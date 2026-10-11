@@ -1,5 +1,3 @@
-'use client';
-
 import { CalendarDay } from './CalendarDay';
 import {
   getDaysInMonthGrid,
@@ -11,6 +9,7 @@ export interface CalendarGridProps {
   viewDate: Date;
   selectedDate?: Date | null;
   selectedRange?: DateRange | null;
+  focusedDate?: Date | null;
   restrictions?: DateRestrictionOptions;
   mode?: 'single' | 'range';
   onDateSelect: (date: Date) => void;
@@ -23,6 +22,7 @@ export function CalendarGrid({
   viewDate,
   selectedDate,
   selectedRange,
+  focusedDate,
   restrictions,
   mode = 'single',
   onDateSelect,
@@ -59,6 +59,7 @@ export function CalendarGrid({
                   isCurrentMonth={isCurrentMonth}
                   selectedDate={selectedDate}
                   selectedRange={selectedRange}
+                  focusedDate={focusedDate}
                   restrictions={restrictions}
                   mode={mode}
                   onClick={onDateSelect}

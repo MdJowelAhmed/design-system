@@ -1,7 +1,5 @@
-'use client';
-
 import { forwardRef } from 'react';
-import { ChevronDown } from '../../icons';
+import { ChevronDown } from '../../icons/set';
 import { cn } from '../../utils';
 import type { AccordionIconProps } from './Accordion.types';
 

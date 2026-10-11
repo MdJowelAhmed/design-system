@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '../../../utils';
@@ -31,7 +29,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(
         {children}
         {required && (
           <span
-            className="ml-0.5 text-red-600 dark:text-red-400"
+            className="text-danger-600 dark:text-danger-400 ml-0.5"
             aria-hidden="true"
           >
             *

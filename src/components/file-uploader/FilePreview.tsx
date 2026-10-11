@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import type { UploadFileItem } from './FileUploader.types';
 import { getFileIcon } from './utils/getFileIcon';

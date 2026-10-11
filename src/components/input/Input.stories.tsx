@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Mail, Phone, Globe, CreditCard, User, DollarSign } from 'lucide-react';
+import { Mail, Phone, Globe, CreditCard, User, DollarSign } from '../../icons';
 import { Input } from './Input';
 
 const meta: Meta<typeof Input> = {

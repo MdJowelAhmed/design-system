@@ -7,7 +7,7 @@ import {
   FileSpreadsheet,
   FileText,
   FileVideo,
-} from 'lucide-react';
+} from '../../../icons/set';
 
 export type FileCategory =
   | 'image'

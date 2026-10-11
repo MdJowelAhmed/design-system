@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import { Skeleton } from '../skeleton';
 import type { TableLoadingProps } from './Table.types';

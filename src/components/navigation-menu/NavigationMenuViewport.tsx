@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { cn } from '../../utils';
@@ -12,7 +10,7 @@ export const NavigationMenuViewport = forwardRef<
   <div className={cn('absolute top-full left-0 flex justify-center')}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        'origin-top-center data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl border border-neutral-200 bg-white/95 text-neutral-900 shadow-xl backdrop-blur-md md:w-[var(--radix-navigation-menu-viewport-width)] dark:border-neutral-800 dark:bg-neutral-900/95 dark:text-neutral-50',
+        'data-[state=open]:animate-popover-in data-[state=closed]:animate-popover-out relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-top overflow-hidden rounded-xl border border-neutral-200 bg-white/95 text-neutral-900 shadow-xl backdrop-blur-md md:w-[var(--radix-navigation-menu-viewport-width)] dark:border-neutral-800 dark:bg-neutral-900/95 dark:text-neutral-50',
         className,
       )}
       ref={ref}

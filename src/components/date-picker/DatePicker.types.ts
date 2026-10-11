@@ -1,6 +1,4 @@
-import type { ReactNode } from 'react';
-import type { VariantProps } from 'class-variance-authority';
-import type { inputWrapperVariants } from '../input/Input.styles';
+import type { FocusEvent } from 'react';
 import type { DateRange, DateRestrictionOptions } from './utils/dateUtils';
 
 // ─────────────────────────────────────────────
@@ -47,6 +45,9 @@ export interface BasePickerProps extends DateRestrictionOptions {
   /** Custom class name on container */
   className?: string;
   id?: string;
+  /** Form field name (useful with react-hook-form) */
+  name?: string;
+  onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
 // ─────────────────────────────────────────────

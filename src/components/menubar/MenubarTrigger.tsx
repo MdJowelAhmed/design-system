@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
 import { cn } from '../../utils';

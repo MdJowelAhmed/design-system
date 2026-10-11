@@ -1,12 +1,6 @@
 import React, { createContext, useContext, useId, forwardRef } from 'react';
-import {
-  Controller,
-  ControllerProps,
-  FieldPath,
-  FieldValues,
-  FormProvider,
-  useFormContext,
-} from 'react-hook-form';
+import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
+import { Controller, FormProvider, useFormContext } from 'react-hook-form';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '../../utils';
 
@@ -16,9 +10,7 @@ type FormItemContextValue = {
   id: string;
 };
 
-const FormItemContext = createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
-);
+const FormItemContext = createContext<FormItemContextValue | null>(null);
 
 export const FormItem = forwardRef<
   HTMLDivElement,
@@ -41,9 +33,7 @@ type FormFieldContextValue<
   name: TName;
 };
 
-const FormFieldContext = createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue,
-);
+const FormFieldContext = createContext<FormFieldContextValue | null>(null);
 
 export const FormField = <
   TFieldValues extends FieldValues = FieldValues,
@@ -63,12 +53,14 @@ export const useFormField = () => {
   const fieldContext = useContext(FormFieldContext);
   const { getFieldState, formState } = useFormContext();
 
-  const fieldState = getFieldState(fieldContext.name, formState);
-
   if (!fieldContext) {
-    throw new Error('useFormField should be used within <FormField>');
+    throw new Error('useFormField must be used within <FormField>');
+  }
+  if (!itemContext) {
+    throw new Error('useFormField must be used within <FormItem>');
   }
 
+  const fieldState = getFieldState(fieldContext.name, formState);
   const { id } = itemContext;
 
   return {
@@ -92,7 +84,7 @@ export const FormLabel = forwardRef<
       ref={ref}
       className={cn(
         'text-sm leading-none font-medium text-neutral-900 dark:text-neutral-50',
-        error && 'text-red-500 dark:text-red-400',
+        error && 'text-danger-600 dark:text-danger-400',
         className,
       )}
       htmlFor={formItemId}
@@ -106,13 +98,16 @@ export const FormControl = forwardRef<
   React.ElementRef<typeof Slot>,
   React.ComponentPropsWithoutRef<typeof Slot>
 >(({ ...props }, ref) => {
-  const { error, formItemId, formMessageId } = useFormField();
+  const { error, formItemId, formDescriptionId, formMessageId } =
+    useFormField();
 
   return (
     <Slot
       ref={ref}
       id={formItemId}
-      aria-describedby={error ? formMessageId : undefined}
+      aria-describedby={
+        error ? `${formDescriptionId} ${formMessageId}` : formDescriptionId
+      }
       aria-invalid={!!error}
       {...props}
     />
@@ -155,8 +150,9 @@ export const FormMessage = forwardRef<
     <p
       ref={ref}
       id={formMessageId}
+      role={error ? 'alert' : undefined}
       className={cn(
-        'text-xs font-medium text-red-500 dark:text-red-400',
+        'text-danger-600 dark:text-danger-400 text-xs font-medium',
         className,
       )}
       {...props}

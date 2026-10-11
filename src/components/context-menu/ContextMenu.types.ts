@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes } from 'react';
 import type * as ContextMenuPrimitive from '@radix-ui/react-context-menu';
 
 export type ContextMenuProps = ContextMenuPrimitive.ContextMenuProps;

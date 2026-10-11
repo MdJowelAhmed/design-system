@@ -1,7 +1,5 @@
-'use client';
-
 import { forwardRef } from 'react';
-import { Inbox } from 'lucide-react';
+import { Inbox } from '../../icons/set';
 import { cn } from '../../utils';
 import { Heading, Text } from '../typography';
 import type { TableEmptyProps } from './Table.types';

@@ -1,5 +1,3 @@
-'use client';
-
 import { createContext, useContext } from 'react';
 import type { CarouselContextValue } from './Carousel.types';
 

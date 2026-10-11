@@ -1,11 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Calendar, Calculator, Smile, User } from 'lucide-react';
+import { useState } from 'react';
+import { Calendar, Calculator, Smile, User } from '../../icons';
+import { Button } from '../button';
 import {
   Command,
+  CommandDialog,
+  CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
   CommandShortcut,
 } from './index';
 
@@ -19,49 +24,63 @@ const meta: Meta = {
 
 export default meta;
 
-export const Default: StoryObj = {
+const Items = () => (
+  <>
+    <CommandInput placeholder="Type a command or search..." />
+    <CommandList>
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandGroup heading="Suggestions">
+        <CommandItem>
+          <Calendar aria-hidden="true" />
+          <span>Calendar</span>
+        </CommandItem>
+        <CommandItem>
+          <Smile aria-hidden="true" />
+          <span>Search Emoji</span>
+        </CommandItem>
+        <CommandItem disabled>
+          <Calculator aria-hidden="true" />
+          <span>Calculator</span>
+        </CommandItem>
+      </CommandGroup>
+      <CommandSeparator />
+      <CommandGroup heading="Settings">
+        <CommandItem>
+          <User aria-hidden="true" />
+          <span>Profile</span>
+          <CommandShortcut>⌘P</CommandShortcut>
+        </CommandItem>
+      </CommandGroup>
+    </CommandList>
+  </>
+);
+
+export const Inline: StoryObj = {
+  render: () => (
+    <Command className="w-[400px] border border-neutral-200 shadow-md dark:border-neutral-800">
+      <Items />
+    </Command>
+  ),
+};
+
+export const Dialog: StoryObj = {
   parameters: {
     a11y: {
       config: {
-        rules: [
-          {
-            // Radix Dialog injects `span[data-radix-focus-guard]` elements that are
-            // aria-hidden but carry tabIndex=-1. tabIndex=-1 means they are NOT reachable
-            // via Tab key — axe nevertheless flags them as "focusable inside aria-hidden".
-            // This is a known Radix UI internal pattern and not a real a11y failure.
-            id: 'aria-hidden-focus',
-            enabled: false,
-          },
-        ],
+        // Radix focus guards are aria-hidden with tabIndex=-1; axe flags them but they are unreachable.
+        rules: [{ id: 'aria-hidden-focus', enabled: false }],
       },
     },
   },
-  render: () => (
-    <Command open={true}>
-      <CommandInput placeholder="Type a command or search..." />
-      <CommandList>
-        <CommandGroup heading="Suggestions">
-          <CommandItem>
-            <Calendar aria-hidden="true" className="mr-2 h-4 w-4" />
-            <span>Calendar</span>
-          </CommandItem>
-          <CommandItem>
-            <Smile aria-hidden="true" className="mr-2 h-4 w-4" />
-            <span>Search Emoji</span>
-          </CommandItem>
-          <CommandItem>
-            <Calculator aria-hidden="true" className="mr-2 h-4 w-4" />
-            <span>Calculator</span>
-          </CommandItem>
-        </CommandGroup>
-        <CommandGroup heading="Settings">
-          <CommandItem>
-            <User aria-hidden="true" className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-            <CommandShortcut>⌘P</CommandShortcut>
-          </CommandItem>
-        </CommandGroup>
-      </CommandList>
-    </Command>
-  ),
+  render: function Render() {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open command palette</Button>
+        <CommandDialog open={open} onOpenChange={setOpen}>
+          <Items />
+        </CommandDialog>
+      </>
+    );
+  },
 };

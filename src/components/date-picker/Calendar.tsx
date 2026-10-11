@@ -1,6 +1,5 @@
-'use client';
-
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
+import type { KeyboardEvent } from 'react';
 import {
   addDays,
   addMonths,
@@ -10,6 +9,7 @@ import {
   subMonths,
   subYears,
 } from 'date-fns';
+import { cn } from '../../utils';
 import { Button } from '../button';
 import { CalendarGrid } from './CalendarGrid';
 import { CalendarHeader } from './CalendarHeader';
@@ -17,7 +17,6 @@ import { calendarContainerVariants } from './DatePicker.styles';
 import type { CalendarProps } from './DatePicker.types';
 import {
   isDateDisabled,
-  isSameDay,
   type DateRange,
   type DateRestrictionOptions,
 } from './utils/dateUtils';
@@ -40,23 +39,24 @@ export function Calendar({
   disablePast,
   className,
 }: CalendarProps) {
-  // Navigation month/year view date
-  const [viewDate, setViewDate] = useState<Date>(() => {
-    if (selected) return startOfDay(selected);
-    if (selectedRange?.from) return startOfDay(selectedRange.from);
-    if (defaultViewDate) return startOfDay(defaultViewDate);
-    return startOfDay(new Date());
-  });
-
-  // Range selection hover state
+  const initialDate = startOfDay(
+    selected ?? selectedRange?.from ?? defaultViewDate ?? new Date(),
+  );
+  // viewDate drives the visible month; focusedDate is the keyboard cursor.
+  const [viewDate, setViewDate] = useState<Date>(initialDate);
+  const [focusedDate, setFocusedDate] = useState<Date>(initialDate);
   const [hoverRange, setHoverRange] = useState<DateRange | null>(null);
 
-  // Synchronize view date if selected date changes
-  useEffect(() => {
+  // Jump to a newly selected date only when the selection itself changes, not on every render.
+  const selectedTime = selected?.getTime() ?? null;
+  const [syncedTime, setSyncedTime] = useState(selectedTime);
+  if (selectedTime !== syncedTime) {
+    setSyncedTime(selectedTime);
     if (selected) {
       setViewDate(startOfDay(selected));
+      setFocusedDate(startOfDay(selected));
     }
-  }, [selected]);
+  }
 
   const restrictions: DateRestrictionOptions = {
     minDate,
@@ -78,6 +78,7 @@ export function Calendar({
   // Date selection logic
   const handleDateClick = (date: Date) => {
     if (isDateDisabled(date, restrictions)) return;
+    setFocusedDate(date);
 
     if (mode === 'single') {
       onSelect?.(date);
@@ -124,56 +125,50 @@ export function Calendar({
     }
   };
 
-  // Keyboard navigation handler for accessibility
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      const current = selected ?? viewDate;
-      let nextDate: Date | null = null;
+  // Arrow keys move the focus cursor only; Enter/Space commits the selection (WAI-ARIA date grid).
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const current = focusedDate;
+    let nextDate: Date;
 
-      switch (e.key) {
-        case 'ArrowLeft':
-          nextDate = subDays(current, 1);
-          break;
-        case 'ArrowRight':
-          nextDate = addDays(current, 1);
-          break;
-        case 'ArrowUp':
-          nextDate = subDays(current, 7);
-          break;
-        case 'ArrowDown':
-          nextDate = addDays(current, 7);
-          break;
-        case 'PageUp':
-          nextDate = e.shiftKey ? subYears(current, 1) : subMonths(current, 1);
-          break;
-        case 'PageDown':
-          nextDate = e.shiftKey ? addYears(current, 1) : addMonths(current, 1);
-          break;
-        case 'Home':
-          nextDate = subDays(current, current.getDay());
-          break;
-        case 'End':
-          nextDate = addDays(current, 6 - current.getDay());
-          break;
-        case 'Enter':
-        case ' ':
-          e.preventDefault();
-          handleDateClick(current);
-          return;
-        default:
-          return;
-      }
-
-      if (nextDate) {
+    switch (e.key) {
+      case 'ArrowLeft':
+        nextDate = subDays(current, 1);
+        break;
+      case 'ArrowRight':
+        nextDate = addDays(current, 1);
+        break;
+      case 'ArrowUp':
+        nextDate = subDays(current, 7);
+        break;
+      case 'ArrowDown':
+        nextDate = addDays(current, 7);
+        break;
+      case 'PageUp':
+        nextDate = e.shiftKey ? subYears(current, 1) : subMonths(current, 1);
+        break;
+      case 'PageDown':
+        nextDate = e.shiftKey ? addYears(current, 1) : addMonths(current, 1);
+        break;
+      case 'Home':
+        nextDate = subDays(current, current.getDay());
+        break;
+      case 'End':
+        nextDate = addDays(current, 6 - current.getDay());
+        break;
+      case 'Enter':
+      case ' ':
         e.preventDefault();
-        setViewDate(nextDate);
-        if (mode === 'single' && !isDateDisabled(nextDate, restrictions)) {
-          onSelect?.(nextDate);
-        }
-      }
-    },
-    [selected, viewDate, mode, restrictions, onSelect],
-  );
+        handleDateClick(current);
+        return;
+      default:
+        return;
+    }
+
+    e.preventDefault();
+    setFocusedDate(nextDate);
+    setViewDate(nextDate);
+    handleDateHover(nextDate);
+  };
 
   const activeRange = hoverRange ?? selectedRange;
 
@@ -181,7 +176,9 @@ export function Calendar({
     <div
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      className={calendarContainerVariants({ className })}
+      className={calendarContainerVariants({
+        className: cn('group', className),
+      })}
       role="region"
       aria-label="Calendar"
     >
@@ -199,6 +196,7 @@ export function Calendar({
         viewDate={viewDate}
         selectedDate={selected}
         selectedRange={activeRange}
+        focusedDate={focusedDate}
         restrictions={restrictions}
         mode={mode}
         onDateSelect={handleDateClick}

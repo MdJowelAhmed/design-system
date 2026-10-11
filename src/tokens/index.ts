@@ -8,6 +8,7 @@ export type { CSSVarKey } from './generated/css-vars';
 
 // Re-export raw JSON token sources for tools that need them
 export { default as colorTokens } from './colors.json';
+export { default as brandTokens } from './brand.json';
 export { default as typographyTokens } from './typography.json';
 export { default as spacingTokens } from './spacing.json';
 export { default as radiusTokens } from './radius.json';

@@ -1,4 +1,4 @@
-name: Publish to NPM
+name: Publish to npm
 
 on:
   release:
@@ -7,37 +7,28 @@ on:
 
 jobs:
   publish:
-    name: Build & Publish Package to NPM
+    name: Build & publish
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
+      - uses: pnpm/action-setup@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "pnpm"
-          registry-url: "https://registry.npmjs.org"
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
-      - name: Run Unit Tests
-        run: pnpm test
+      - run: pnpm validate
 
-      - name: Build Design System Package
-        run: pnpm build
+      - run: pnpm build
 
-      - name: Publish Package to NPM Registry
-        run: pnpm publish --access public --no-git-checks
+      - run: pnpm publish --access public --no-git-checks --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

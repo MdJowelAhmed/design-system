@@ -1,6 +1,5 @@
-'use client';
-
 import { forwardRef } from 'react';
+import type { ElementType } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '../../../utils';
 import { textVariants } from './Text.styles';
@@ -25,11 +24,11 @@ export const Text = forwardRef<HTMLElement, TextProps>(
     },
     ref,
   ) => {
-    const Component = asChild ? Slot : as;
+    const Component: ElementType = asChild ? Slot : as;
 
     return (
       <Component
-        ref={ref as any}
+        ref={ref}
         className={cn(
           textVariants({
             size,

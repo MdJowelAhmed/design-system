@@ -1,13 +1,7 @@
-'use client';
-
-import {
-  createContext,
-  forwardRef,
-  useContext,
-  type HTMLAttributes,
-  type ReactNode,
-} from 'react';
-import * as LucideIcons from 'lucide-react';
+import { createContext, forwardRef, useContext, useMemo } from 'react';
+import type { ReactNode } from 'react';
+import type { LucideIcon, LucideProps } from '../../icons/set';
+import { defaultIcons } from '../../icons/registry';
 import { cn } from '../../utils';
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -20,18 +14,22 @@ const iconSizeMap: Record<IconSize, string> = {
   xl: 'h-8 w-8',
 };
 
-export interface IconProps extends HTMLAttributes<SVGElement> {
-  name: string;
+export type IconRegistry = Record<string, LucideIcon>;
+
+export interface IconProps extends Omit<LucideProps, 'size' | 'ref'> {
+  /** Name of a registered icon (kebab-case), e.g. "chevron-down". */
+  name?: string;
+  /** Render a specific icon component directly; takes precedence over `name`. */
+  icon?: LucideIcon;
   size?: IconSize;
-  color?: string;
-  strokeWidth?: number;
 }
 
 export interface IconContextValue {
   size?: IconSize;
   color?: string;
   strokeWidth?: number;
-  icons?: Record<string, React.ComponentType<any>>;
+  /** Extra icons available to `<Icon name>`, merged over the defaults. */
+  icons?: IconRegistry;
 }
 
 const IconContext = createContext<IconContextValue>({
@@ -46,49 +44,32 @@ export function IconProvider({
   strokeWidth = 2,
   icons,
 }: IconContextValue & { children: ReactNode }) {
-  return (
-    <IconContext.Provider value={{ size, color, strokeWidth, icons }}>
-      {children}
-    </IconContext.Provider>
+  const value = useMemo(
+    () => ({ size, color, strokeWidth, icons }),
+    [size, color, strokeWidth, icons],
   );
+  return <IconContext.Provider value={value}>{children}</IconContext.Provider>;
 }
 
+/**
+ * Renders an icon with provider-level defaults.
+ * Only registered icons can be referenced by name so unused Lucide icons stay tree-shakeable.
+ */
 export const Icon = forwardRef<SVGSVGElement, IconProps>(
-  (
-    {
-      name,
-      size: customSize,
-      color: customColor,
-      strokeWidth: customStroke,
-      className,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ name, icon, size, color, strokeWidth, className, ...props }, ref) => {
     const context = useContext(IconContext);
-    const size = customSize ?? context.size ?? 'md';
-    const strokeWidth = customStroke ?? context.strokeWidth ?? 2;
-
-    // Convert camelCase or kebab-case name to PascalCase for Lucide lookup
-    const formatName = (str: string) =>
-      str
-        .split('-')
-        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-        .join('');
-
-    const iconKey = formatName(name);
     const Component =
-      context.icons?.[name] ??
-      (LucideIcons as any)[iconKey] ??
-      (LucideIcons as any)[name] ??
-      LucideIcons.HelpCircle;
+      icon ??
+      (name ? (context.icons?.[name] ?? defaultIcons[name]) : undefined) ??
+      defaultIcons['help-circle']!;
 
     return (
       <Component
         ref={ref}
-        strokeWidth={strokeWidth}
-        className={cn(iconSizeMap[size], className)}
-        style={customColor ? { color: customColor } : undefined}
+        aria-hidden={props['aria-label'] ? undefined : true}
+        strokeWidth={strokeWidth ?? context.strokeWidth ?? 2}
+        color={color ?? context.color ?? 'currentColor'}
+        className={cn(iconSizeMap[size ?? context.size ?? 'md'], className)}
         {...props}
       />
     );

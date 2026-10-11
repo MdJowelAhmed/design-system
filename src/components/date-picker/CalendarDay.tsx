@@ -1,5 +1,4 @@
-'use client';
-
+import { cn } from '../../utils';
 import { dayVariants } from './DatePicker.styles';
 import {
   isDateDisabled,
@@ -28,6 +27,7 @@ export function CalendarDay({
   isCurrentMonth,
   selectedDate,
   selectedRange,
+  focusedDate,
   restrictions,
   mode = 'single',
   onClick,
@@ -35,6 +35,7 @@ export function CalendarDay({
 }: CalendarDayProps) {
   const isDisabled = isDateDisabled(date, restrictions);
   const isToday = isSameDay(date, new Date());
+  const isFocused = isSameDay(date, focusedDate);
 
   let status:
     | 'normal'
@@ -87,7 +88,12 @@ export function CalendarDay({
       onMouseEnter={() => !isDisabled && onMouseEnter?.(date)}
       aria-label={date.toDateString()}
       aria-disabled={isDisabled || undefined}
-      className={dayVariants({ status })}
+      aria-current={isToday ? 'date' : undefined}
+      data-focused={isFocused || undefined}
+      className={cn(
+        dayVariants({ status }),
+        isFocused && 'group-focus-visible:ring-ring group-focus-visible:ring-2',
+      )}
     >
       {dayNumber}
     </button>

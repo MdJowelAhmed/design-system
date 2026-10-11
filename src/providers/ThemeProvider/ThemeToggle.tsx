@@ -1,7 +1,5 @@
-'use client';
-
 import { forwardRef } from 'react';
-import { Monitor, Moon, Sun } from 'lucide-react';
+import { Monitor, Moon, Sun } from '../../icons/set';
 import { IconButton } from '../../components/button';
 import { useTheme } from '../../theme';
 import type { IconButtonProps } from '../../components/button';
@@ -38,9 +36,9 @@ export const ThemeToggle = forwardRef<HTMLButtonElement, ThemeToggleProps>(
         {theme === 'system' ? (
           <Monitor className="h-4 w-4 transition-transform duration-200" />
         ) : resolvedTheme === 'dark' ? (
-          <Moon className="h-4 w-4 text-purple-400 transition-transform duration-200" />
+          <Moon className="text-secondary-400 h-4 w-4 transition-transform duration-200" />
         ) : (
-          <Sun className="h-4 w-4 text-amber-500 transition-transform duration-200" />
+          <Sun className="text-warning-500 h-4 w-4 transition-transform duration-200" />
         )}
       </IconButton>
     );

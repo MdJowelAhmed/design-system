@@ -1,4 +1,9 @@
-export { ThemeProvider, useTheme, brandPalettes } from './ThemeProvider';
+export {
+  ThemeProvider,
+  useTheme,
+  brandPalettes,
+  brandColors,
+} from './ThemeProvider';
 export type {
   Theme,
   ResolvedTheme,
@@ -8,3 +13,4 @@ export type {
 } from './ThemeProvider';
 export { themeScript, getThemeScriptTag } from './theme-script';
 export { ThemeCustomizer } from './ThemeCustomizer';
+export type { ThemeCustomizerProps } from './ThemeCustomizer';

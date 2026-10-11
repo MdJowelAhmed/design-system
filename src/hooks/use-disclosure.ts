@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useState } from 'react';
 
 export interface UseDisclosureProps {
@@ -8,31 +6,30 @@ export interface UseDisclosureProps {
   onClose?: () => void;
 }
 
-export function useDisclosure(props: UseDisclosureProps = {}) {
-  const { defaultIsOpen = false, onOpen, onClose } = props;
+/** Boolean open/closed state for dialogs, menus, and any other toggleable UI. */
+export function useDisclosure({
+  defaultIsOpen = false,
+  onOpen,
+  onClose,
+}: UseDisclosureProps = {}) {
   const [isOpen, setIsOpen] = useState(defaultIsOpen);
 
   const open = useCallback(() => {
-    setIsOpen((prev) => {
-      if (!prev) onOpen?.();
-      return true;
-    });
-  }, [onOpen]);
+    if (isOpen) return;
+    setIsOpen(true);
+    onOpen?.();
+  }, [isOpen, onOpen]);
 
   const close = useCallback(() => {
-    setIsOpen((prev) => {
-      if (prev) onClose?.();
-      return false;
-    });
-  }, [onClose]);
+    if (!isOpen) return;
+    setIsOpen(false);
+    onClose?.();
+  }, [isOpen, onClose]);
 
   const toggle = useCallback(() => {
-    setIsOpen((prev) => {
-      if (prev) onClose?.();
-      else onOpen?.();
-      return !prev;
-    });
-  }, [onClose, onOpen]);
+    if (isOpen) close();
+    else open();
+  }, [isOpen, open, close]);
 
   return { isOpen, open, close, toggle, setIsOpen };
 }

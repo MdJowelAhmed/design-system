@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI
 
 on:
   push:
@@ -11,40 +11,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  ci-quality-checks:
-    name: Type-check, Lint, Test & Build
+  validate:
+    name: Validate, Build & Storybook
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
+      # Version comes from "packageManager" in package.json.
+      - uses: pnpm/action-setup@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "pnpm"
+          cache: pnpm
 
-      - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
-      - name: TypeScript Verification
-        run: pnpm type-check
+      # Generated tokens/exports committed + types + lint + format + tests (incl. architecture rules)
+      - run: pnpm validate
 
-      - name: ESLint Code Quality
-        run: pnpm lint
+      - run: pnpm build
 
-      - name: Vitest Unit Testing
-        run: pnpm test
-
-      - name: Compile Design System Package (CJS/ESM/Types/CSS)
-        run: pnpm build
-
-      - name: Build Storybook Documentation Site
-        run: pnpm run build-storybook
+      - run: pnpm build-storybook

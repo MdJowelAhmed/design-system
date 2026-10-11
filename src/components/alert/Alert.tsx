@@ -1,22 +1,20 @@
-'use client';
-
 import { forwardRef } from 'react';
-import { Info, CheckCircle2, AlertTriangle, XCircle, X } from '../../icons';
+import { Info, CheckCircle2, AlertTriangle, XCircle, X } from '../../icons/set';
 import { cn } from '../../utils';
 import { Heading } from '../typography';
 import { alertVariants } from './Alert.styles';
 import type { AlertProps } from './Alert.types';
 
 const defaultIcons = {
-  info: <Info className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />,
+  info: <Info className="text-info-600 dark:text-info-400 h-5 w-5 shrink-0" />,
   success: (
-    <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+    <CheckCircle2 className="text-success-600 dark:text-success-400 h-5 w-5 shrink-0" />
   ),
   warning: (
-    <AlertTriangle className="h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
+    <AlertTriangle className="text-warning-600 dark:text-warning-400 h-5 w-5 shrink-0" />
   ),
   danger: (
-    <XCircle className="h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+    <XCircle className="text-danger-600 dark:text-danger-400 h-5 w-5 shrink-0" />
   ),
 };
 

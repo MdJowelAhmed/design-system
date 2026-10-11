@@ -1,8 +1,6 @@
-'use client';
-
 import { forwardRef, useId } from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { ChevronDown, Check } from '../../icons';
+import { ChevronDown, Check } from '../../icons/set';
 import { cn } from '../../utils';
 import type { SelectProps } from './Select.types';
 
@@ -19,13 +17,13 @@ export const SelectTrigger = forwardRef<
       'flex w-full items-center justify-between font-sans transition-all duration-200',
       'border border-neutral-300 bg-white dark:border-neutral-700 dark:bg-neutral-900',
       'text-neutral-900 placeholder:text-neutral-400 dark:text-neutral-100 dark:placeholder:text-neutral-500',
-      'focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:focus:border-blue-400',
+      'focus:border-primary-500 focus:ring-primary-500/20 dark:focus:border-primary-400 focus:ring-2 focus:outline-none',
       'disabled:cursor-not-allowed disabled:bg-neutral-100 disabled:opacity-60 dark:disabled:bg-neutral-800',
       size === 'sm' && 'h-8 rounded-md px-3 text-xs',
       size === 'md' && 'h-10 rounded-lg px-3.5 text-sm',
       size === 'lg' && 'h-12 rounded-xl px-4 text-base',
       error &&
-        'border-red-500 focus:border-red-500 focus:ring-red-500/20 dark:border-red-400',
+        'border-danger-500 focus:border-danger-500 focus:ring-danger-500/20 dark:border-danger-400',
       className,
     )}
     {...props}
@@ -50,7 +48,7 @@ export const SelectContent = forwardRef<
       ref={ref}
       position={position}
       className={cn(
-        'animate-in fade-in-80 relative z-50 min-w-[8rem] overflow-hidden rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100',
+        'data-[state=open]:animate-popover-in data-[state=closed]:animate-popover-out relative z-50 min-w-[8rem] overflow-hidden rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100',
         position === 'popper' && 'translate-y-1',
         className,
       )}
@@ -80,7 +78,7 @@ export const SelectItem = forwardRef<
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+        <Check className="text-primary-600 dark:text-primary-400 h-4 w-4" />
       </SelectPrimitive.ItemIndicator>
     </span>
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
@@ -162,7 +160,7 @@ export function Select({
         <p
           id={messageId}
           role="alert"
-          className="text-xs font-medium text-red-600 dark:text-red-400"
+          className="text-danger-600 dark:text-danger-400 text-xs font-medium"
         >
           {error}
         </p>

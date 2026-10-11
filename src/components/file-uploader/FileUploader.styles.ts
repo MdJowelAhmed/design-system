@@ -40,9 +40,9 @@ export const fileItemVariants = cva(
       status: {
         idle: 'border-neutral-200 dark:border-neutral-800',
         uploading: 'border-primary-300 dark:border-primary-800',
-        success: 'border-emerald-300 dark:border-emerald-800',
+        success: 'border-success-300 dark:border-success-800',
         error:
-          'border-rose-300 bg-rose-50/30 dark:border-rose-800 dark:bg-rose-950/20',
+          'border-danger-300 bg-danger-50/30 dark:border-danger-800 dark:bg-danger-950/20',
       },
     },
     defaultVariants: {

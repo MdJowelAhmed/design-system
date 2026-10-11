@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { cn } from '../../utils';
@@ -13,7 +11,9 @@ export const Accordion = forwardRef<
   <AccordionPrimitive.Root
     ref={ref}
     className={cn(accordionVariants({ variant, className }))}
-    {...(props as any)}
+    {...(props as
+      | AccordionPrimitive.AccordionSingleProps
+      | AccordionPrimitive.AccordionMultipleProps)}
   />
 ));
 

@@ -17,6 +17,6 @@ describe('Label Component', () => {
   it('applies error styling when error is true', () => {
     render(<Label error>Password</Label>);
     const label = screen.getByText('Password');
-    expect(label.className).toContain('text-red-600');
+    expect(label.className).toContain('text-danger-600');
   });
 });

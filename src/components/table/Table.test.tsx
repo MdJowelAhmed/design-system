@@ -35,9 +35,7 @@ describe('Presentation Table Component System', () => {
               $250.00
             </TableCell>
             <TableCell>
-              <Badge variant="solid" color="success">
-                Active
-              </Badge>
+              <Badge variant="success">Active</Badge>
             </TableCell>
           </TableRow>
         </TableBody>

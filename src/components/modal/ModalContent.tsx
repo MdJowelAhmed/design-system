@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { X } from '../../icons';
+import { X } from '../../icons/set';
 import { cn } from '../../utils';
 import { modalContentVariants } from './Modal.styles';
 import type { ModalContentProps, ModalOverlayProps } from './Modal.types';

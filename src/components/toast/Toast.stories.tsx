@@ -25,7 +25,7 @@ const ToastDemo = () => {
           addToast({
             title: 'Payment failed!',
             description: 'Unable to process card payment.',
-            variant: 'error',
+            variant: 'danger',
           })
         }
       >

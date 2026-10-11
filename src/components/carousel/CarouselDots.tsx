@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import { cn } from '../../utils';
 import type { CarouselDotsProps } from './Carousel.types';

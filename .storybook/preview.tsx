@@ -1,6 +1,6 @@
-import React from 'react';
 import type { Preview } from '@storybook/react';
-import { ThemeProvider } from '../src/theme';
+import { ThemeProvider, brandColors } from '../src/theme';
+import type { BrandColor, ResolvedTheme } from '../src/theme';
 import '../src/styles/styles.css';
 
 const preview: Preview = {
@@ -11,27 +11,46 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: '#ffffff' },
-        { name: 'dark', value: '#09090b' },
-      ],
+    backgrounds: { disable: true },
+  },
+  globalTypes: {
+    theme: {
+      description: 'Color mode',
+      toolbar: {
+        title: 'Theme',
+        icon: 'mirror',
+        items: [
+          { value: 'light', title: 'Light', icon: 'sun' },
+          { value: 'dark', title: 'Dark', icon: 'moon' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    brand: {
+      description: 'Brand accent (from src/tokens/brand.json)',
+      toolbar: {
+        title: 'Brand',
+        icon: 'paintbrush',
+        items: brandColors.map((color) => ({ value: color, title: color })),
+        dynamicTitle: true,
+      },
     },
   },
+  initialGlobals: {
+    theme: 'light',
+    brand: 'blue',
+  },
   decorators: [
-    (Story, context) => {
-      const isDarkBg = context.globals.backgrounds?.value === '#09090b';
-      const theme = isDarkBg ? 'dark' : 'light';
-
-      return (
-        <ThemeProvider defaultTheme={theme} key={theme}>
-          <div className="min-h-[150px] bg-white p-6 font-sans text-neutral-900 transition-colors dark:bg-neutral-950 dark:text-neutral-100">
-            <Story />
-          </div>
-        </ThemeProvider>
-      );
-    },
+    (Story, context) => (
+      <ThemeProvider
+        forcedTheme={context.globals.theme as ResolvedTheme}
+        forcedBrandColor={context.globals.brand as BrandColor}
+      >
+        <div className="bg-background text-foreground min-h-[150px] p-6 font-sans transition-colors">
+          <Story />
+        </div>
+      </ThemeProvider>
+    ),
   ],
 };
 

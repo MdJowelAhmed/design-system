@@ -13,7 +13,7 @@ type Story = StoryObj<typeof HoverCard>;
 export const Default: Story = {
   render: () => (
     <HoverCard>
-      <HoverCardTrigger className="cursor-pointer font-medium text-blue-600 underline dark:text-blue-400">
+      <HoverCardTrigger className="text-primary-600 dark:text-primary-400 cursor-pointer font-medium underline">
         @nextjs
       </HoverCardTrigger>
       <HoverCardContent>

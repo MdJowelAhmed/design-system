@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import { cn } from '../../utils';
@@ -18,7 +16,12 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
   ) => {
     if (label && orientation === 'horizontal') {
       return (
-        <div className="relative flex w-full items-center py-2">
+        <div
+          ref={ref}
+          role={decorative ? 'none' : 'separator'}
+          className={cn('relative flex w-full items-center py-2', className)}
+          {...props}
+        >
           <div className="flex-grow border-t border-neutral-200 dark:border-neutral-800" />
           <span className="shrink-0 px-3 text-xs font-medium tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
             {label}

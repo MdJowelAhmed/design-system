@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes } from 'react';
 
 export type CarouselAnimation = 'slide' | 'fade' | 'zoom' | 'scale';
 export type CarouselOrientation = 'horizontal' | 'vertical';

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Plus } from 'lucide-react';
+import { Plus } from '../../icons';
 import { describe, expect, it } from 'vitest';
 import {
   Accordion,

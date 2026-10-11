@@ -1,7 +1,6 @@
-'use client';
-
 import { forwardRef, useState } from 'react';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import type { ChangeEvent, FocusEvent } from 'react';
+import { Calendar as CalendarIcon } from '../../icons/set';
 import { Popover, PopoverAnchor, PopoverContent } from '../popover';
 import { Input } from '../input';
 import { Calendar } from './Calendar';
@@ -40,6 +39,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       disablePast,
       className,
       id,
+      onBlur,
       ...props
     },
     ref,
@@ -51,38 +51,46 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     );
     const selectedDate = isControlled ? value : internalDate;
 
-    // Popover open state
     const [open, setOpen] = useState(false);
+    // Raw text while the user is typing; null means "show the formatted selected date".
+    const [draft, setDraft] = useState<string | null>(null);
 
-    // Formatted display string
-    const displayValue = formatDate(selectedDate, format);
+    const displayValue = draft ?? formatDate(selectedDate, format);
     const defaultPlaceholder = placeholder ?? format.toUpperCase();
 
-    // Select date callback
-    const handleSelect = (date: Date) => {
+    const commit = (date: Date | null) => {
       if (!isControlled) setInternalDate(date);
       onChange?.(date);
+    };
+
+    const handleSelect = (date: Date) => {
+      setDraft(null);
+      commit(date);
       setOpen(false);
     };
 
-    // Clear callback
     const handleClear = () => {
-      if (!isControlled) setInternalDate(null);
-      onChange?.(null);
+      setDraft(null);
+      commit(null);
     };
 
-    // Manual input typing parser
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       const text = e.target.value;
+      setDraft(text);
       if (!text) {
-        handleClear();
+        commit(null);
         return;
       }
+      // Commit only complete dates: "15/08/2" parses as year 2, so require an exact round-trip.
       const parsed = parseDate(text, format);
-      if (parsed) {
-        if (!isControlled) setInternalDate(parsed);
-        onChange?.(parsed);
+      if (parsed && formatDate(parsed, format) === text.trim()) {
+        commit(parsed);
       }
+    };
+
+    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+      setDraft(null);
+      onBlur?.(e);
     };
 
     return (
@@ -121,6 +129,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               placeholder={defaultPlaceholder}
               value={displayValue}
               onChange={handleInputChange}
+              onBlur={handleBlur}
               leftIcon={<CalendarIcon aria-hidden="true" className="h-4 w-4" />}
               className={className}
               // These land on the underlying <input> element via ...props spread in Input

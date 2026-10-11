@@ -13,7 +13,7 @@ export const labelVariants = cva(
         true: 'cursor-not-allowed text-neutral-500 dark:text-neutral-400',
       },
       error: {
-        true: 'text-red-600 dark:text-red-400',
+        true: 'text-danger-600 dark:text-danger-400',
       },
     },
     defaultVariants: {

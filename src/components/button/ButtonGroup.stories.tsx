@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Download, Plus, Trash2 } from 'lucide-react';
+import { Download, Plus, Trash2 } from '../../icons';
 import { Button } from './Button';
 import { ButtonGroup } from './ButtonGroup';
 

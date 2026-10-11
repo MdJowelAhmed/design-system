@@ -15,7 +15,7 @@ export const dayVariants = cva(
   [
     'inline-flex items-center justify-center h-8 w-8 text-xs font-medium rounded-lg',
     'transition-all duration-150 cursor-pointer outline-none relative select-none',
-    'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1',
+    'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
   ].join(' '),
   {
     variants: {
@@ -23,15 +23,15 @@ export const dayVariants = cva(
         normal:
           'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200',
         today:
-          'font-bold border border-blue-500 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40',
+          'font-bold border border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/40',
         selected:
-          'bg-blue-600 text-white font-semibold hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 shadow-xs',
+          'bg-primary-600 text-white font-semibold hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 shadow-xs',
         rangeStart:
-          'bg-blue-600 text-white font-semibold rounded-r-none dark:bg-blue-500 shadow-xs',
+          'bg-primary-600 text-white font-semibold rounded-r-none dark:bg-primary-500 shadow-xs',
         rangeEnd:
-          'bg-blue-600 text-white font-semibold rounded-l-none dark:bg-blue-500 shadow-xs',
+          'bg-primary-600 text-white font-semibold rounded-l-none dark:bg-primary-500 shadow-xs',
         inRange:
-          'bg-blue-50 dark:bg-blue-950/50 text-blue-900 dark:text-blue-200 rounded-none hover:bg-blue-100 dark:hover:bg-blue-900/60',
+          'bg-primary-50 dark:bg-primary-950/50 text-primary-900 dark:text-primary-200 rounded-none hover:bg-primary-100 dark:hover:bg-primary-900/60',
         disabled:
           // WCAG 1.4.3 exempts disabled controls from contrast — pointer-events-none
           // ensures they are truly non-interactive. Removed opacity-50 to avoid axe
@@ -54,7 +54,7 @@ export const presetButtonVariants = cva(
   {
     variants: {
       active: {
-        true: 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 font-semibold',
+        true: 'bg-primary-50 text-primary-700 dark:bg-primary-950/60 dark:text-primary-300 font-semibold',
         false:
           'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800',
       },

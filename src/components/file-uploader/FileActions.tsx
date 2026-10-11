@@ -1,7 +1,5 @@
-'use client';
-
 import { forwardRef } from 'react';
-import { CheckCircle2, Trash2 } from 'lucide-react';
+import { CheckCircle2, Trash2 } from '../../icons/set';
 import { useFileUploaderContext } from './FileUploader';
 import type { UploadFileItem } from './FileUploader.types';
 import { IconButton } from '../button';
@@ -33,7 +31,7 @@ export const FileActions = forwardRef<HTMLDivElement, FileActionsProps>(
         {file.status === 'success' && (
           <span title="Upload complete">
             <CheckCircle2
-              className="h-5 w-5 text-emerald-600 dark:text-emerald-400"
+              className="text-success-600 dark:text-success-400 h-5 w-5"
               aria-hidden="true"
             />
           </span>
@@ -46,7 +44,7 @@ export const FileActions = forwardRef<HTMLDivElement, FileActionsProps>(
           disabled={disabled}
           aria-label={`Remove file ${file.name}`}
           onClick={handleRemove}
-          className="text-neutral-500 hover:text-rose-600 dark:text-neutral-400 dark:hover:text-rose-400"
+          className="hover:text-danger-600 dark:hover:text-danger-400 text-neutral-500 dark:text-neutral-400"
         >
           <Trash2 className="h-4 w-4" />
         </IconButton>

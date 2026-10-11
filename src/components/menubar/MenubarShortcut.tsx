@@ -1,5 +1,3 @@
-'use client';
-
 import { cn } from '../../utils';
 import type { MenubarShortcutProps } from './Menubar.types';
 

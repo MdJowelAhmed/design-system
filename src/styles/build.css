@@ -1,0 +1,9 @@
+/* Entry for the published, precompiled `my-design-system/styles.css`. */
+@import 'tailwindcss' source(none);
+@import './theme.css';
+
+@source '../components';
+@source '../theme';
+@source '../providers';
+@source not '../**/*.stories.tsx';
+@source not '../**/*.test.tsx';

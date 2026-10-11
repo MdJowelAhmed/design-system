@@ -1,7 +1,5 @@
-'use client';
-
 import { forwardRef } from 'react';
-import { ChevronDown, ChevronsUpDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronsUpDown, ChevronUp } from '../../icons/set';
 import { cn } from '../../utils';
 import type { TableHeadProps } from './Table.types';
 

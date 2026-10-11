@@ -1,25 +1,31 @@
-'use client';
-
 import { forwardRef, useState } from 'react';
-import { Eye, EyeOff, Lock } from 'lucide-react';
+import { Eye, EyeOff, Lock } from '../../icons/set';
 import { cn } from '../../utils';
 import { inputSlotVariants } from '../input/Input.styles';
 import { Input } from '../input/Input';
 import type { PasswordInputProps } from './PasswordInput.types';
 
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
-  ({ showToggle = true, leftIcon, ...props }, ref) => {
+  (
+    {
+      showToggle = true,
+      leftIcon,
+      autoComplete = 'current-password',
+      ...props
+    },
+    ref,
+  ) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const visibilityToggle = showToggle ? (
       <button
         type="button"
-        tabIndex={-1}
         onClick={() => setIsVisible((prev) => !prev)}
         aria-label={isVisible ? 'Hide password' : 'Show password'}
+        aria-pressed={isVisible}
         className={cn(inputSlotVariants.actionIcon)}
       >
-        {isVisible ? <EyeOff /> : <Eye />}
+        {isVisible ? <EyeOff aria-hidden="true" /> : <Eye aria-hidden="true" />}
       </button>
     ) : undefined;
 
@@ -29,7 +35,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         type={isVisible ? 'text' : 'password'}
         leftIcon={leftIcon ?? <Lock />}
         rightIcon={visibilityToggle}
-        autoComplete={props.autoComplete ?? 'current-password'}
+        autoComplete={autoComplete}
         {...props}
       />
     );

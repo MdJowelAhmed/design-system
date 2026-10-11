@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChevronsUpDown } from 'lucide-react';
+import { ChevronsUpDown } from '../../icons';
 import { Button } from '../button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './index';
 

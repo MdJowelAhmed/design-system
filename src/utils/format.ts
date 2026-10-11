@@ -1,4 +1,5 @@
-export function formatDate(
+/** Locale-aware date/time formatting. For pattern-based formatting (dd/MM/yyyy) use the date-picker `formatDate`. */
+export function formatDateTime(
   date: Date | string | number,
   options: Intl.DateTimeFormatOptions = { dateStyle: 'medium' },
   locale = 'en-US',

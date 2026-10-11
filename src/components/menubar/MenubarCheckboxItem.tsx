@@ -1,8 +1,6 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
-import { Check } from 'lucide-react';
+import { Check } from '../../icons/set';
 import { cn } from '../../utils';
 import type { MenubarCheckboxItemProps } from './Menubar.types';
 

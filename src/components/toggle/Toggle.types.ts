@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import * as TogglePrimitive from '@radix-ui/react-toggle';
-import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
+import type * as TogglePrimitive from '@radix-ui/react-toggle';
+import type * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 
 export interface ToggleProps extends ComponentPropsWithoutRef<
   typeof TogglePrimitive.Root

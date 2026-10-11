@@ -1,7 +1,5 @@
-'use client';
-
 import { forwardRef } from 'react';
-import { UploadCloud } from 'lucide-react';
+import { UploadCloud } from '../../icons/set';
 import { useFileUploaderContext } from './FileUploader';
 import { dropzoneVariants } from './FileUploader.styles';
 import { cn } from '../../utils';

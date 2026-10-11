@@ -1,5 +1,5 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import * as ProgressPrimitive from '@radix-ui/react-progress';
+import type * as ProgressPrimitive from '@radix-ui/react-progress';
 
 export interface ProgressProps extends ComponentPropsWithoutRef<
   typeof ProgressPrimitive.Root

@@ -16,13 +16,14 @@ Welcome to the official component library and interactive documentation hub for 
 - **Form & Schema Validation:** Built-in `react-hook-form` + `zod` schema validation primitives (`FormField`, `Field`, `FormItem`).
 - **Advanced Micro-Animations:** Fluid physics spring animations powered by `framer-motion` (`FadeIn`, `SlideIn`, `ScaleIn`).
 - **Design Token System:** Powered by **Style Dictionary v4** auto-generating DTCG-compliant CSS Variables and TypeScript constants.
-- **Theme Engine:** Built-in `ThemeProvider` with Light, Dark, System mode, and dynamic brand accent customization (`indigo`, `emerald`, `violet`, `rose`, `amber`, `blue`, `cyan`, `zinc`).
+- **Theme Engine:** Built-in `ThemeProvider` with Light, Dark, System mode, and dynamic brand accent customization (`blue` (default), `indigo`, `violet`, `emerald`, `rose`, `amber`, `cyan`, `zinc`) — try the brand switcher in the toolbar.
 
 ---
 
 ## 🧩 Component Catalog
 
 ### 📝 Form & Input Controls
+
 - **Button / IconButton / ButtonGroup** — Primary, secondary, outline, ghost, link, and grouped action triggers.
 - **Input / PasswordInput / SearchInput** — Enhanced text input fields with icon slots, toggle password, and instant clear capabilities.
 - **Textarea** — Multi-line text field with dynamic auto-resize and character limit options.
@@ -34,6 +35,7 @@ Welcome to the official component library and interactive documentation hub for 
 - **Form / Field** — Form wrapper primitives integrated with `react-hook-form` and `zod`.
 
 ### 📊 Data Display & Layout
+
 - **Card** — Versatile container with Header, Title, Description, Content, Media, and Footer primitives.
 - **Table** — High-density data grid with Header, Row, Cell, Sorting, Loading state, and Empty state indicators.
 - **Badge / Avatar** — Status badges, user profile avatars, and avatar fallback stacks.
@@ -44,6 +46,7 @@ Welcome to the official component library and interactive documentation hub for 
 - **Carousel** — Touch-friendly image and card carousel with navigation controls, dots, and autoplay.
 
 ### 🧭 Navigation & Menus
+
 - **Breadcrumb / Pagination** — Page hierarchy breadcrumbs and data table pagination controls.
 - **Tabs / Accordion / Collapsible** — Content switcher tabs, FAQ expandable accordions, and collapsible panels.
 - **Dropdown Menu / Context Menu / Menubar** — Desktop and mobile contextual popup menus, right-click menus, and top menubars.
@@ -51,12 +54,14 @@ Welcome to the official component library and interactive documentation hub for 
 - **Command (Palette)** — Fast command menu palette (`Cmd + K`) with fuzzy search and quick actions.
 
 ### 🔔 Overlays & Feedback
+
 - **Dialog / Modal / Sheet** — Accessible modal dialogs, full-screen popups, and side slide-out sheets.
 - **Popover / Hover Card / Tooltip** — Rich popover cards, hover preview cards, and informative tooltips.
 - **Toast / Alert** — Notification toast queue (`useToast()`) and static inline alert banners.
 - **Progress / Skeleton** — Linear progress bars and animated content loading skeletons.
 
 ### 🎨 Motion & Theme Primitives
+
 - **Motion** — Animation wrappers (`FadeIn`, `SlideIn`, `ScaleIn`) built on Framer Motion.
 - **Theme** — `ThemeProvider`, `ThemeCustomizer`, and `useTheme()` hook for instant theme toggling.
 - **Tokens / Utils / Hooks / Icons** — Design tokens, helper utilities (`cn`), custom hooks, and Lucide React icons.
@@ -76,7 +81,11 @@ import { FileUploader } from 'my-design-system/file-uploader';
 import { Form, FormField } from 'my-design-system/form';
 import { Table } from 'my-design-system/table';
 import { Carousel } from 'my-design-system/carousel';
-import { Command } from 'my-design-system/command';
+import {
+  CommandDialog,
+  CommandInput,
+  CommandItem,
+} from 'my-design-system/command';
 import { ThemeProvider, useTheme } from 'my-design-system/theme';
 import { FadeIn, SlideIn } from 'my-design-system/motion';
 import { useToast } from 'my-design-system/toast';
@@ -87,6 +96,7 @@ import { useToast } from 'my-design-system/toast';
 ## 🚀 Quick Start
 
 ### 1. Import Global CSS Styles
+
 In your root application file (`src/main.tsx` or `app/layout.tsx`):
 
 ```tsx
@@ -94,11 +104,12 @@ import 'my-design-system/styles.css';
 ```
 
 ### 2. Wrap Application with ThemeProvider
+
 ```tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider } from 'my-design-system';
-import 'my-design-system/styles.css';
+import { ThemeProvider } from 'my-design-system/theme';
+import 'my-design-system/styles.css'; // or, with Tailwind v4: @import 'my-design-system/theme.css' in your CSS
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

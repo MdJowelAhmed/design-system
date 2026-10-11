@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Copy, Edit, Trash2 } from 'lucide-react';
+import { Copy, Edit, Trash2 } from '../../icons';
 import {
   ContextMenu,
   ContextMenuContent,
@@ -35,7 +35,7 @@ export const Default: StoryObj = {
           <ContextMenuShortcut>⌘D</ContextMenuShortcut>
         </ContextMenuItem>
         <ContextMenuSeparator />
-        <ContextMenuItem className="text-red-600 dark:text-red-400">
+        <ContextMenuItem className="text-danger-600 dark:text-danger-400">
           <Trash2 className="mr-2 h-4 w-4" /> Delete
           <ContextMenuShortcut>⌘⌫</ContextMenuShortcut>
         </ContextMenuItem>

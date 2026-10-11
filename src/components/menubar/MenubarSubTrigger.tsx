@@ -1,8 +1,6 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight } from '../../icons/set';
 import { cn } from '../../utils';
 import type { MenubarSubTriggerProps } from './Menubar.types';
 

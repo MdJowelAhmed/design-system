@@ -1,5 +1,3 @@
-'use client';
-
 import { useLayoutEffect } from 'react';
 
 export function useScrollLock(lock = true) {

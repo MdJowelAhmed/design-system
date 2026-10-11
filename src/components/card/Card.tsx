@@ -1,9 +1,7 @@
-'use client';
-
 import { forwardRef } from 'react';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from '../../icons/set';
 import { cn } from '../../utils';
 import { cardVariants } from './Card.styles';
 import type { CardProps } from './Card.types';

@@ -21,7 +21,6 @@ describe('Date Utilities', () => {
   });
 
   it('checks date restrictions correctly', () => {
-    const today = new Date();
     const past = new Date(2020, 0, 1);
     const future = new Date(2035, 0, 1);
 
@@ -52,6 +51,37 @@ describe('DatePicker', () => {
 
     fireEvent.change(input, { target: { value: '15/08/2026' } });
     expect(handleChange).toHaveBeenCalledWith(expect.any(Date));
+  });
+
+  it('keeps partially typed text and does not commit incomplete dates', () => {
+    const handleChange = vi.fn();
+    render(
+      <DatePicker label="Date" onChange={handleChange} format="dd/MM/yyyy" />,
+    );
+    const input = screen.getByLabelText('Date');
+
+    fireEvent.change(input, { target: { value: '15/08/2' } });
+    expect(input).toHaveValue('15/08/2');
+    expect(handleChange).not.toHaveBeenCalled();
+
+    fireEvent.change(input, { target: { value: '15/08/2026' } });
+    expect(handleChange).toHaveBeenCalledTimes(1);
+  });
+
+  it('restores the formatted value on blur after invalid input', () => {
+    render(
+      <DatePicker
+        label="Date"
+        defaultValue={new Date(2026, 7, 15)}
+        format="dd/MM/yyyy"
+      />,
+    );
+    const input = screen.getByLabelText('Date');
+
+    fireEvent.change(input, { target: { value: '99/99' } });
+    expect(input).toHaveValue('99/99');
+    fireEvent.blur(input);
+    expect(input).toHaveValue('15/08/2026');
   });
 
   it('disables input when disabled prop is set', () => {
@@ -101,5 +131,20 @@ describe('Standalone Calendar', () => {
     const dayBtn = screen.getByRole('button', { name: /15/i });
     fireEvent.click(dayBtn);
     expect(handleSelect).toHaveBeenCalledWith(expect.any(Date));
+  });
+
+  it('moves focus with arrow keys and only selects on Enter', () => {
+    const handleSelect = vi.fn();
+    render(
+      <Calendar selected={new Date(2026, 7, 15)} onSelect={handleSelect} />,
+    );
+    const calendar = screen.getByRole('region', { name: 'Calendar' });
+
+    fireEvent.keyDown(calendar, { key: 'ArrowRight' });
+    fireEvent.keyDown(calendar, { key: 'ArrowRight' });
+    expect(handleSelect).not.toHaveBeenCalled();
+
+    fireEvent.keyDown(calendar, { key: 'Enter' });
+    expect(handleSelect).toHaveBeenCalledWith(new Date(2026, 7, 17));
   });
 });

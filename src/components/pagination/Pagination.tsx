@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { ChevronLeft, ChevronRight, MoreHorizontal } from '../../icons';
+import { ChevronLeft, ChevronRight, MoreHorizontal } from '../../icons/set';
 import { cn } from '../../utils';
 import type {
   PaginationProps,

@@ -1,7 +1,5 @@
-'use client';
-
 import { forwardRef, useState } from 'react';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { Calendar as CalendarIcon } from '../../icons/set';
 import { Popover, PopoverAnchor, PopoverContent } from '../popover';
 import { Input } from '../input';
 import { Calendar } from './Calendar';

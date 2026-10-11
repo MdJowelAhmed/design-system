@@ -1,0 +1,115 @@
+/*
+ * Design-system Tailwind preset.
+ * Colors, fonts, radii, shadows and easings all come from src/tokens/*.json
+ * (see the generated files). Do not hardcode values here — add a token instead.
+ */
+@import './generated/tokens.css';
+@import './generated/theme.css';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *, .dark, .dark *));
+
+@theme {
+  --animate-overlay-in: overlay-fade-in 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-overlay-out: overlay-fade-out 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-content-in: content-scale-in 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-content-out: content-scale-out 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-accordion-down: accordion-slide-down 250ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-accordion-up: accordion-slide-up 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-popover-in: popover-scale-in 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-popover-out: popover-scale-out 100ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-in: overlay-fade-in 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-out: overlay-fade-out 150ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes popover-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes popover-scale-out {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes overlay-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes overlay-fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes content-scale-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  @keyframes content-scale-out {
+    from {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+  }
+
+  @keyframes accordion-slide-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-slide-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@utility focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  &:focus-visible {
+    outline-color: var(--ds-color-ring);
+    box-shadow:
+      0 0 0 2px var(--ds-color-background),
+      0 0 0 4px var(--ds-color-ring);
+  }
+}

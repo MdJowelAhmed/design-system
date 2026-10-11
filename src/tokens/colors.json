@@ -1,17 +1,17 @@
 {
   "color": {
     "primary": {
-      "50": { "value": "#eff6ff" },
-      "100": { "value": "#dbeafe" },
-      "200": { "value": "#bfdbfe" },
-      "300": { "value": "#93c5fd" },
-      "400": { "value": "#60a5fa" },
-      "500": { "value": "#3b82f6" },
-      "600": { "value": "#2563eb" },
-      "700": { "value": "#1d4ed8" },
-      "800": { "value": "#1e40af" },
-      "900": { "value": "#1e3a8a" },
-      "950": { "value": "#172554" }
+      "50": { "value": "{brand.blue.50}" },
+      "100": { "value": "{brand.blue.100}" },
+      "200": { "value": "{brand.blue.200}" },
+      "300": { "value": "{brand.blue.300}" },
+      "400": { "value": "{brand.blue.400}" },
+      "500": { "value": "{brand.blue.500}" },
+      "600": { "value": "{brand.blue.600}" },
+      "700": { "value": "{brand.blue.700}" },
+      "800": { "value": "{brand.blue.800}" },
+      "900": { "value": "{brand.blue.900}" },
+      "950": { "value": "{brand.blue.950}" }
     },
     "secondary": {
       "50": { "value": "#f5f3ff" },
@@ -114,8 +114,8 @@
       "dark": { "value": "#27272a" }
     },
     "ring": {
-      "light": { "value": "#3b82f6" },
-      "dark": { "value": "#3b82f6" }
+      "light": { "value": "{color.primary.500}" },
+      "dark": { "value": "{color.primary.400}" }
     }
   }
 }

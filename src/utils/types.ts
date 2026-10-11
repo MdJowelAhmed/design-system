@@ -36,6 +36,11 @@ export type ColorVariant =
   | 'neutral';
 
 /**
+ * Feedback/status intent shared by Alert, Toast, and other status surfaces.
+ */
+export type StatusVariant = 'info' | 'success' | 'warning' | 'danger';
+
+/**
  * Common component props shared across many components.
  */
 export interface BaseComponentProps {

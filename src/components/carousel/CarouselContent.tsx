@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Children,
   cloneElement,
@@ -31,8 +29,8 @@ export const CarouselContent = forwardRef<HTMLDivElement, CarouselContentProps>(
         {...props}
       >
         {Children.map(children, (child, index) => {
-          if (isValidElement(child)) {
-            return cloneElement(child, { index } as any);
+          if (isValidElement<{ index?: number }>(child)) {
+            return cloneElement(child, { index });
           }
           return child;
         })}

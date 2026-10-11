@@ -1,7 +1,5 @@
-'use client';
-
 import { forwardRef, useId, useRef, useState } from 'react';
-import { Loader2, X } from 'lucide-react';
+import { Loader2, X } from '../../icons/set';
 import { cn, mergeRefs } from '../../utils';
 import {
   FieldCounter,
@@ -112,25 +110,30 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onClear?.();
     }
 
-    // Right slot priority: loading spinner > clear button > custom right icon.
+    // A loading spinner replaces the right slot; otherwise clear button and right icon sit side by side.
     const rightSlot = loading ? (
       <Loader2
         className={cn(inputSlotVariants.icon, 'animate-spin')}
         aria-hidden="true"
       />
-    ) : showClearButton ? (
-      <button
-        type="button"
-        onClick={handleClear}
-        tabIndex={-1}
-        aria-label="Clear input"
-        className={cn(inputSlotVariants.actionIcon)}
-      >
-        <X aria-hidden="true" />
-      </button>
-    ) : rightIcon ? (
-      <span className={cn(inputSlotVariants.icon)}>{rightIcon}</span>
-    ) : null;
+    ) : (
+      <>
+        {showClearButton && (
+          <button
+            type="button"
+            onClick={handleClear}
+            tabIndex={-1}
+            aria-label="Clear input"
+            className={cn(inputSlotVariants.actionIcon)}
+          >
+            <X aria-hidden="true" />
+          </button>
+        )}
+        {rightIcon && (
+          <span className={cn(inputSlotVariants.icon)}>{rightIcon}</span>
+        )}
+      </>
+    );
 
     return (
       <FieldRoot fullWidth={fullWidth}>

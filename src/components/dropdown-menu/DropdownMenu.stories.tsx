@@ -30,7 +30,7 @@ export const Default: Story = {
         <DropdownMenuItem>Billing</DropdownMenuItem>
         <DropdownMenuItem>Team</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-red-600 dark:text-red-400">
+        <DropdownMenuItem className="text-danger-600 dark:text-danger-400">
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>

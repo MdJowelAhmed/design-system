@@ -50,6 +50,7 @@ export interface FileUploaderContextValue {
   errors: ValidationError[];
   openFileDialog: () => void;
   removeFile: (id: string) => void;
+  clearFiles: () => void;
   clearErrors: () => void;
   addFiles: (files: File[]) => void;
   inputRef: React.RefObject<HTMLInputElement | null>;

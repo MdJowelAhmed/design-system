@@ -62,6 +62,55 @@ describe('Enterprise FileUploader Component System', () => {
     expect(handleRemove).toHaveBeenCalledTimes(1);
   });
 
+  it('removes files from a controlled list through onFilesChange', () => {
+    const item = {
+      id: '1',
+      file: new File(['x'], 'a.txt', { type: 'text/plain' }),
+      name: 'a.txt',
+      size: 1,
+      type: 'text/plain',
+      status: 'idle' as const,
+      progress: 0,
+    };
+    const onFilesChange = vi.fn();
+    const onFileRemove = vi.fn();
+
+    render(
+      <FileUploader
+        files={[item]}
+        onFilesChange={onFilesChange}
+        onFileRemove={onFileRemove}
+      >
+        <FileList>
+          <FileItem file={item} />
+        </FileList>
+      </FileUploader>,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /Remove file a.txt/i }));
+    expect(onFileRemove).toHaveBeenCalledWith(item);
+    expect(onFilesChange).toHaveBeenCalledWith([]);
+  });
+
+  it('adds valid files in uncontrolled mode', () => {
+    const onFilesChange = vi.fn();
+    render(
+      <FileUploader onFilesChange={onFilesChange}>
+        <FileInput data-testid="input" />
+        <FileList />
+      </FileUploader>,
+    );
+
+    const file = new File(['abc'], 'notes.txt', { type: 'text/plain' });
+    fireEvent.change(screen.getByTestId('input'), {
+      target: { files: [file] },
+    });
+
+    expect(onFilesChange).toHaveBeenCalledWith([
+      expect.objectContaining({ name: 'notes.txt', status: 'idle' }),
+    ]);
+  });
+
   it('validates file size limit and displays error alert', () => {
     const onValidationError = vi.fn();
     const largeFile = new File(['a'.repeat(20 * 1024 * 1024)], 'large.pdf', {

@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { cn } from '../../utils';
@@ -12,7 +10,7 @@ export const NavigationMenuIndicator = forwardRef<
   <NavigationMenuPrimitive.Indicator
     ref={ref}
     className={cn(
-      'data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in top-full z-[1] flex h-2.5 items-end justify-center overflow-hidden',
+      'data-[state=visible]:animate-fade-in data-[state=hidden]:animate-fade-out top-full z-[1] flex h-2.5 items-end justify-center overflow-hidden',
       className,
     )}
     {...props}

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { createRef } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus } from '../../icons';
 import { Button } from './Button';
 
 describe('Button', () => {

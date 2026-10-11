@@ -1,8 +1,6 @@
-'use client';
-
 import { forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from '../../icons/set';
 import { cn } from '../../utils';
 import { buttonVariants } from './Button.styles';
 import type { ButtonProps } from './Button.types';

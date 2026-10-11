@@ -1,35 +1,34 @@
 import { describe, expect, it } from 'vitest';
 import {
-  clamp,
+  cn,
   formatCurrency,
-  formatDate,
+  formatDateTime,
   formatNumber,
-  sleep,
+  mergeRefs,
 } from './index';
 
-describe('Enterprise Utilities Package', () => {
-  it('formats dates, numbers, and currency correctly', () => {
-    const formattedDate = formatDate(new Date(2026, 0, 15), {
-      dateStyle: 'short',
-    });
-    expect(formattedDate).toBeTruthy();
-
-    const formattedNum = formatNumber(1234567);
-    expect(formattedNum).toBe('1,234,567');
-
-    const formattedCurr = formatCurrency(99.9, 'USD');
-    expect(formattedCurr).toContain('$99.90');
+describe('utils', () => {
+  it('formats dates, numbers, and currency', () => {
+    expect(formatDateTime(new Date(2026, 0, 15), { dateStyle: 'short' })).toBe(
+      '1/15/26',
+    );
+    expect(formatDateTime('not a date')).toBe('');
+    expect(formatNumber(1234567)).toBe('1,234,567');
+    expect(formatCurrency(99.9, 'USD')).toBe('$99.90');
   });
 
-  it('clamps numbers within min and max boundaries', () => {
-    expect(clamp(15, 0, 10)).toBe(10);
-    expect(clamp(-5, 0, 10)).toBe(0);
-    expect(clamp(5, 0, 10)).toBe(5);
+  it('merges Tailwind classes, letting later classes win', () => {
+    expect(cn('px-2 text-sm', 'px-4', false && 'hidden')).toBe('text-sm px-4');
   });
 
-  it('resolves sleep promise after specified delay', async () => {
-    const start = Date.now();
-    await sleep(50);
-    expect(Date.now() - start).toBeGreaterThanOrEqual(45);
+  it('assigns a value to every ref passed to mergeRefs', () => {
+    const objectRef = { current: null as string | null };
+    let callbackValue: string | null = null;
+    mergeRefs<string>(objectRef, (v) => {
+      callbackValue = v;
+    })('node');
+
+    expect(objectRef.current).toBe('node');
+    expect(callbackValue).toBe('node');
   });
 });

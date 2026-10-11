@@ -1,10 +1,9 @@
-'use client';
-
 import {
   createContext,
   forwardRef,
   useCallback,
   useContext,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -61,12 +60,11 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
     const [errors, setErrors] = useState<ValidationError[]>([]);
 
     const {
-      files: internalFiles,
-      addFiles: addInternalFiles,
+      files: activeFiles,
+      addFiles: addValidatedFiles,
       removeFile,
-    } = useFileUpload({ onFilesChange, onFileRemove });
-
-    const activeFiles = controlledFiles ?? internalFiles;
+      clearFiles,
+    } = useFileUpload({ files: controlledFiles, onFilesChange, onFileRemove });
 
     const { validate } = useFileValidation({
       maxSize,
@@ -90,7 +88,7 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
         }
 
         if (validFiles.length > 0) {
-          addInternalFiles(validFiles);
+          addValidatedFiles(validFiles);
           if (uploadOnSelect && onUpload) {
             onUpload(validFiles);
           }
@@ -100,7 +98,7 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
         disabled,
         validate,
         onValidationError,
-        addInternalFiles,
+        addValidatedFiles,
         uploadOnSelect,
         onUpload,
       ],
@@ -119,24 +117,45 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
 
     const clearErrors = useCallback(() => setErrors([]), []);
 
-    const contextValue: FileUploaderContextValue = {
-      variant,
-      size,
-      multiple,
-      disabled,
-      accept,
-      maxSize,
-      minSize,
-      maxFiles,
-      files: activeFiles,
-      isDragging,
-      errors,
-      openFileDialog,
-      removeFile,
-      clearErrors,
-      addFiles,
-      inputRef,
-    };
+    const contextValue = useMemo<FileUploaderContextValue>(
+      () => ({
+        variant,
+        size,
+        multiple,
+        disabled,
+        accept,
+        maxSize,
+        minSize,
+        maxFiles,
+        files: activeFiles,
+        isDragging,
+        errors,
+        openFileDialog,
+        removeFile,
+        clearFiles,
+        clearErrors,
+        addFiles,
+        inputRef,
+      }),
+      [
+        variant,
+        size,
+        multiple,
+        disabled,
+        accept,
+        maxSize,
+        minSize,
+        maxFiles,
+        activeFiles,
+        isDragging,
+        errors,
+        openFileDialog,
+        removeFile,
+        clearFiles,
+        clearErrors,
+        addFiles,
+      ],
+    );
 
     return (
       <FileUploaderContext.Provider value={contextValue}>

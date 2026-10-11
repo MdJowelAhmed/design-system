@@ -1,8 +1,6 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
-import { User } from '../../icons';
+import { User } from '../../icons/set';
 import { cn } from '../../utils';
 import type { AvatarProps } from './Avatar.types';
 
@@ -16,10 +14,10 @@ const sizeClasses = {
 };
 
 const statusClasses = {
-  online: 'bg-emerald-500',
+  online: 'bg-success-500',
   offline: 'bg-neutral-400',
-  away: 'bg-amber-500',
-  busy: 'bg-red-500',
+  away: 'bg-warning-500',
+  busy: 'bg-danger-500',
 };
 
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(

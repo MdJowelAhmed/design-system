@@ -1,8 +1,6 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown } from '../../icons/set';
 import { cn } from '../../utils';
 import { navigationMenuTriggerVariants } from './NavigationMenu.styles';
 import type { NavigationMenuTriggerProps } from './NavigationMenu.types';

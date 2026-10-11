@@ -1,10 +1,7 @@
-'use client';
-
 import { forwardRef } from 'react';
-import { ChevronLeft, ChevronUp } from 'lucide-react';
+import { ChevronLeft, ChevronUp } from '../../icons/set';
 import { cn } from '../../utils';
 import { IconButton } from '../button';
-import type { ButtonColor } from '../button';
 import type { CarouselControlProps } from './Carousel.types';
 import { useCarousel } from './useCarouselContext';
 

@@ -1,6 +1,5 @@
-'use client';
-
 import { forwardRef, useId, useState } from 'react';
+import type { ChangeEvent } from 'react';
 import { cn } from '../../utils';
 import type { TextareaProps } from './Textarea.types';
 
@@ -29,13 +28,16 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const errorId = `${id}-error`;
     const helperId = `${id}-helper`;
 
-    const [charCount, setCharCount] = useState(() => {
-      const val = value ?? defaultValue ?? '';
-      return String(val).length;
-    });
+    const isControlled = value !== undefined;
+    const [uncontrolledCount, setUncontrolledCount] = useState(
+      () => String(defaultValue ?? '').length,
+    );
+    const charCount = isControlled
+      ? String(value ?? '').length
+      : uncontrolledCount;
 
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setCharCount(e.target.value.length);
+    const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+      if (!isControlled) setUncontrolledCount(e.target.value.length);
       onChange?.(e);
     };
 
@@ -58,8 +60,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           rows={rows}
           maxLength={maxLength}
           disabled={disabled}
-          value={value}
-          defaultValue={defaultValue}
+          {...(isControlled ? { value } : { defaultValue })}
           onChange={handleChange}
           aria-invalid={Boolean(error) || undefined}
           aria-describedby={error ? errorId : helperText ? helperId : undefined}
@@ -67,10 +68,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             'w-full resize-y rounded-lg p-3 font-sans text-sm transition-all duration-200',
             'border border-neutral-300 bg-white dark:border-neutral-700 dark:bg-neutral-900',
             'text-neutral-900 placeholder:text-neutral-400 dark:text-neutral-100 dark:placeholder:text-neutral-500',
-            'focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:focus:border-blue-400',
+            'focus:border-primary-500 focus:ring-primary-500/20 dark:focus:border-primary-400 focus:ring-2 focus:outline-none',
             'disabled:cursor-not-allowed disabled:bg-neutral-100 disabled:opacity-60 dark:disabled:bg-neutral-800',
             error &&
-              'border-red-500 focus:border-red-500 focus:ring-red-500/20 dark:border-red-400 dark:focus:border-red-400',
+              'border-danger-500 focus:border-danger-500 focus:ring-danger-500/20 dark:border-danger-400 dark:focus:border-danger-400',
             className,
           )}
           {...props}
@@ -81,7 +82,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             <p
               id={errorId}
               role="alert"
-              className="font-medium text-red-500 dark:text-red-400"
+              className="text-danger-600 dark:text-danger-400 font-medium"
             >
               {error}
             </p>

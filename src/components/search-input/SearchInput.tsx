@@ -1,7 +1,5 @@
-'use client';
-
 import { forwardRef, useEffect, useRef } from 'react';
-import { Search } from 'lucide-react';
+import { Search } from '../../icons/set';
 import { mergeRefs } from '../../utils';
 import { Input } from '../input/Input';
 import type { SearchInputProps } from './SearchInput.types';

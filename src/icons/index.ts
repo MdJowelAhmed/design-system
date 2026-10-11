@@ -1,27 +1,6 @@
 /**
- * Icon System — Re-exports Lucide React icons
+ * Icon system. Components import icons from here (not from lucide-react directly)
+ * so the icon library can be swapped in one place.
  */
-
-export {
-  Check,
-  CheckCircle2,
-  ChevronDown,
-  ChevronRight,
-  ChevronLeft,
-  Circle,
-  Info,
-  Loader2,
-  Minus,
-  User,
-  X,
-  XCircle,
-  AlertTriangle,
-  Mail,
-  Plus,
-  Search,
-  Lock,
-  ArrowRight,
-  MoreHorizontal,
-} from 'lucide-react';
-
 export * from 'lucide-react';
+export { defaultIcons } from './registry';

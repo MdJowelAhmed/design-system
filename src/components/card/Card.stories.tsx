@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MoreVertical } from 'lucide-react';
+import { MoreVertical } from '../../icons';
 import { Button } from '../button';
 import { IconButton } from '../button';
 import {

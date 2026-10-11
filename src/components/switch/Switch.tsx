@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef, useId } from 'react';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { cn } from '../../utils';
@@ -48,9 +46,9 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
           disabled={disabled}
           className={cn(
             'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out',
-            'focus-visible:ring-2 focus-visible:ring-blue-500/30 focus-visible:ring-offset-2 focus-visible:outline-none',
+            'focus-visible:ring-primary-500/30 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
             'disabled:cursor-not-allowed disabled:opacity-50',
-            'bg-neutral-200 data-[state=checked]:bg-blue-600 dark:bg-neutral-800 dark:data-[state=checked]:bg-blue-500',
+            'data-[state=checked]:bg-primary-600 dark:data-[state=checked]:bg-primary-500 bg-neutral-200 dark:bg-neutral-800',
             size === 'sm' && 'h-5 w-9',
             size === 'md' && 'h-6 w-11',
             size === 'lg' && 'h-7 w-14',

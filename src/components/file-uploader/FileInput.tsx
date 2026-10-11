@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import { useFileUploaderContext } from './FileUploader';
 import { mergeRefs } from '../../utils';

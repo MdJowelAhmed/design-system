@@ -1,37 +1,28 @@
-'use client';
-
-import { createContext, useContext, type ReactNode } from 'react';
 import { MotionConfig } from 'framer-motion';
+import type { Transition } from 'framer-motion';
+import type { ReactNode } from 'react';
 
-export interface MotionContextValue {
+export interface MotionProviderProps {
+  children: ReactNode;
+  /** `user` follows the OS "reduce motion" setting. */
   reducedMotion?: 'user' | 'always' | 'never';
-  transition?: {
-    type?: string;
-    duration?: number;
-    stiffness?: number;
-    damping?: number;
-  };
+  transition?: Transition;
 }
 
-const MotionContext = createContext<MotionContextValue>({});
+const DEFAULT_TRANSITION: Transition = {
+  type: 'spring',
+  stiffness: 300,
+  damping: 30,
+};
 
 export function MotionProvider({
   children,
   reducedMotion = 'user',
-  transition = { type: 'spring', stiffness: 300, damping: 30 },
-}: MotionContextValue & { children: ReactNode }) {
+  transition = DEFAULT_TRANSITION,
+}: MotionProviderProps) {
   return (
-    <MotionContext.Provider value={{ reducedMotion, transition }}>
-      <MotionConfig
-        reducedMotion={reducedMotion}
-        transition={transition as any}
-      >
-        {children}
-      </MotionConfig>
-    </MotionContext.Provider>
+    <MotionConfig reducedMotion={reducedMotion} transition={transition}>
+      {children}
+    </MotionConfig>
   );
-}
-
-export function useMotionConfig(): MotionContextValue {
-  return useContext(MotionContext);
 }

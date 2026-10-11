@@ -1,82 +1,100 @@
-'use client';
-
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { generatePreviewUrl, revokePreviewUrl } from '../utils/generatePreview';
 import type { UploadFileItem } from '../FileUploader.types';
 
-export function useFileUpload({
-  onFilesChange,
-  onFileRemove,
-}: {
+let fileCounter = 0;
+const createFileId = (file: File) =>
+  `${file.name}-${file.size}-${Date.now().toString(36)}-${++fileCounter}`;
+
+interface UseFileUploadOptions {
+  /** Controlled file list. When provided, the parent owns state via `onFilesChange`. */
+  files?: UploadFileItem[];
   onFilesChange?: (files: UploadFileItem[]) => void;
   onFileRemove?: (file: UploadFileItem) => void;
-} = {}) {
-  const [files, setFiles] = useState<UploadFileItem[]>([]);
+}
+
+export function useFileUpload({
+  files: controlledFiles,
+  onFilesChange,
+  onFileRemove,
+}: UseFileUploadOptions = {}) {
+  const [internalFiles, setInternalFiles] = useState<UploadFileItem[]>([]);
+  const isControlled = controlledFiles !== undefined;
+  const files = isControlled ? controlledFiles : internalFiles;
+
+  // Uncontrolled previews belong to this hook and must be released on unmount.
+  const ownedPreviews = useRef(new Set<string>());
+
+  const commit = useCallback(
+    (next: UploadFileItem[]) => {
+      if (!isControlled) setInternalFiles(next);
+      onFilesChange?.(next);
+    },
+    [isControlled, onFilesChange],
+  );
+
+  const release = useCallback((item: UploadFileItem) => {
+    if (!item.previewUrl) return;
+    revokePreviewUrl(item.previewUrl);
+    ownedPreviews.current.delete(item.previewUrl);
+  }, []);
 
   const addFiles = useCallback(
     (newFiles: File[]) => {
-      const items: UploadFileItem[] = newFiles.map((file) => ({
-        id: `${file.name}-${file.size}-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
-        file,
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        status: 'idle',
-        progress: 0,
-        previewUrl: generatePreviewUrl(file),
-      }));
-
-      setFiles((prev) => {
-        const updated = [...prev, ...items];
-        onFilesChange?.(updated);
-        return updated;
+      const items: UploadFileItem[] = newFiles.map((file) => {
+        const previewUrl = generatePreviewUrl(file);
+        if (previewUrl && !isControlled) ownedPreviews.current.add(previewUrl);
+        return {
+          id: createFileId(file),
+          file,
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          status: 'idle',
+          progress: 0,
+          previewUrl,
+        };
       });
+      commit([...files, ...items]);
     },
-    [onFilesChange],
+    [files, isControlled, commit],
   );
 
   const removeFile = useCallback(
     (id: string) => {
-      setFiles((prev) => {
-        const target = prev.find((f) => f.id === id);
-        if (target) {
-          if (target.previewUrl) revokePreviewUrl(target.previewUrl);
-          onFileRemove?.(target);
-        }
-        const updated = prev.filter((f) => f.id !== id);
-        onFilesChange?.(updated);
-        return updated;
-      });
+      const target = files.find((f) => f.id === id);
+      if (!target) return;
+      release(target);
+      onFileRemove?.(target);
+      commit(files.filter((f) => f.id !== id));
     },
-    [onFileRemove, onFilesChange],
+    [files, onFileRemove, commit, release],
   );
 
   const updateFileStatus = useCallback(
     (id: string, updates: Partial<UploadFileItem>) => {
-      setFiles((prev) => {
-        const updated = prev.map((item) =>
-          item.id === id ? { ...item, ...updates } : item,
-        );
-        onFilesChange?.(updated);
-        return updated;
-      });
+      commit(
+        files.map((item) => (item.id === id ? { ...item, ...updates } : item)),
+      );
     },
-    [onFilesChange],
+    [files, commit],
   );
 
   const clearFiles = useCallback(() => {
-    setFiles((prev) => {
-      prev.forEach((f) => {
-        if (f.previewUrl) revokePreviewUrl(f.previewUrl);
-      });
-      onFilesChange?.([]);
-      return [];
-    });
-  }, [onFilesChange]);
+    files.forEach(release);
+    commit([]);
+  }, [files, commit, release]);
+
+  useEffect(() => {
+    const previews = ownedPreviews.current;
+    return () => {
+      previews.forEach(revokePreviewUrl);
+      previews.clear();
+    };
+  }, []);
 
   return {
     files,
-    setFiles,
     addFiles,
     removeFile,
     updateFileStatus,

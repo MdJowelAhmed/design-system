@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '../../utils';
@@ -73,7 +71,7 @@ export const CarouselItem = forwardRef<HTMLDivElement, CarouselItemProps>(
       <AnimatePresence initial={false} custom={direction} mode="popLayout">
         {isVisible && (
           <motion.div
-            ref={ref as any}
+            ref={ref}
             role="group"
             aria-roledescription="slide"
             aria-label={`Slide ${index + 1}`}

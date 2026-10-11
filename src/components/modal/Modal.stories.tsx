@@ -334,7 +334,7 @@ export const Destructive: Story = {
         closeOnEscape={false}
       >
         <ModalHeader>
-          <ModalTitle className="text-red-600 dark:text-red-400">
+          <ModalTitle className="text-danger-600 dark:text-danger-400">
             Delete Account
           </ModalTitle>
           <ModalDescription>
@@ -343,7 +343,7 @@ export const Destructive: Story = {
           </ModalDescription>
         </ModalHeader>
         <ModalBody>
-          <p className="font-medium text-red-600 dark:text-red-400">
+          <p className="text-danger-600 dark:text-danger-400 font-medium">
             Critical Action Warning: Outside click & Escape key closing are
             disabled for this modal.
           </p>

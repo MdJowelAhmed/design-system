@@ -1,11 +1,8 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 import { cn } from '../../utils';
 import type {
   CollapsibleContentProps,
-  CollapsibleProps,
   CollapsibleTriggerProps,
 } from './Collapsible.types';
 

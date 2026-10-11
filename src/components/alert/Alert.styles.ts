@@ -5,13 +5,13 @@ export const alertVariants = cva(
   {
     variants: {
       variant: {
-        info: 'bg-blue-50 text-blue-900 border-blue-200 dark:bg-blue-950/50 dark:text-blue-200 dark:border-blue-800',
+        info: 'bg-info-50 text-info-900 border-info-200 dark:bg-info-950/50 dark:text-info-200 dark:border-info-800',
         success:
-          'bg-emerald-50 text-emerald-900 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-200 dark:border-emerald-800',
+          'bg-success-50 text-success-900 border-success-200 dark:bg-success-950/50 dark:text-success-200 dark:border-success-800',
         warning:
-          'bg-amber-50 text-amber-900 border-amber-200 dark:bg-amber-950/50 dark:text-amber-200 dark:border-amber-800',
+          'bg-warning-50 text-warning-900 border-warning-200 dark:bg-warning-950/50 dark:text-warning-200 dark:border-warning-800',
         danger:
-          'bg-red-50 text-red-900 border-red-200 dark:bg-red-950/50 dark:text-red-200 dark:border-red-800',
+          'bg-danger-50 text-danger-900 border-danger-200 dark:bg-danger-950/50 dark:text-danger-200 dark:border-danger-800',
       },
     },
     defaultVariants: {

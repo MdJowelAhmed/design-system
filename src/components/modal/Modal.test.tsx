@@ -94,7 +94,7 @@ describe('Modal Component System', () => {
 
     const dialogContent = screen.getByTestId('modal-content');
     expect(dialogContent).toHaveClass('max-w-lg');
-    expect(dialogContent).toHaveClass('border-red-500/40');
+    expect(dialogContent).toHaveClass('border-danger-500/40');
   });
 
   it('renders without close icon when showCloseButton is false', () => {

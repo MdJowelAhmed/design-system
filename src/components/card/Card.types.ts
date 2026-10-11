@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ImgHTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes } from 'react';
 import type { HeadingProps, TextProps } from '../typography';
 
 export type CardVariant =

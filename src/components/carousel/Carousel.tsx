@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
 import type { KeyboardEvent } from 'react';
 import { Slot } from '@radix-ui/react-slot';

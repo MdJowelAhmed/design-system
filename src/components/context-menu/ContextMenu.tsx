@@ -1,8 +1,6 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as ContextMenuPrimitive from '@radix-ui/react-context-menu';
-import { Check, ChevronRight, Circle } from 'lucide-react';
+import { Check, ChevronRight, Circle } from '../../icons/set';
 import { cn } from '../../utils';
 import type {
   ContextMenuCheckboxItemProps,
@@ -55,7 +53,7 @@ export const ContextMenuSubContent = forwardRef<
   <ContextMenuPrimitive.SubContent
     ref={ref}
     className={cn(
-      'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 z-50 min-w-[8rem] overflow-hidden rounded-xl border border-neutral-200 bg-white p-1 text-neutral-900 shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-50',
+      'data-[state=open]:animate-popover-in data-[state=closed]:animate-popover-out z-50 min-w-[8rem] overflow-hidden rounded-xl border border-neutral-200 bg-white p-1 text-neutral-900 shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-50',
       className,
     )}
     {...props}
@@ -71,7 +69,7 @@ export const ContextMenuContent = forwardRef<
     <ContextMenuPrimitive.Content
       ref={ref}
       className={cn(
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 z-50 min-w-[10rem] overflow-hidden rounded-xl border border-neutral-200 bg-white/95 p-1.5 text-neutral-900 shadow-xl backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-900/95 dark:text-neutral-50',
+        'data-[state=open]:animate-popover-in data-[state=closed]:animate-popover-out z-50 min-w-[10rem] overflow-hidden rounded-xl border border-neutral-200 bg-white/95 p-1.5 text-neutral-900 shadow-xl backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-900/95 dark:text-neutral-50',
         className,
       )}
       {...props}

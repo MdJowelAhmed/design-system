@@ -1,8 +1,6 @@
-'use client';
-
 import { forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink } from '../../../icons/set';
 import { cn } from '../../../utils';
 import { linkVariants } from './Link.styles';
 import type { LinkProps } from './Link.types';

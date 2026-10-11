@@ -1,8 +1,6 @@
-'use client';
-
 import { forwardRef } from 'react';
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
-import { Circle } from 'lucide-react';
+import { Circle } from '../../icons/set';
 import { cn } from '../../utils';
 import type { MenubarRadioItemProps } from './Menubar.types';
 

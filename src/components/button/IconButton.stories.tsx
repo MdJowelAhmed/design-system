@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Bell, Download, Plus, Settings, Trash2, X } from 'lucide-react';
+import { Bell, Download, Plus, Settings, Trash2, X } from '../../icons';
 import { IconButton } from './IconButton';
 
 const meta: Meta<typeof IconButton> = {

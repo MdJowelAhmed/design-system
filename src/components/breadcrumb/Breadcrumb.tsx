@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { ChevronRight } from '../../icons';
+import { ChevronRight } from '../../icons/set';
 import { cn } from '../../utils';
 import type {
   BreadcrumbProps,
@@ -59,8 +59,6 @@ export const BreadcrumbPage = forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
   ({ className, ...props }, ref) => (
     <span
       ref={ref}
-      role="link"
-      aria-disabled="true"
       aria-current="page"
       className={cn(
         'font-normal text-neutral-900 dark:text-neutral-50',

@@ -1,6 +1,4 @@
-'use client';
-
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from '../../icons/set';
 import { IconButton } from '../button';
 import { calendarHeaderVariants } from './DatePicker.styles';
 

@@ -15,23 +15,23 @@ export const inputWrapperVariants = cva(
         outlined: [
           'border bg-white dark:bg-neutral-900',
           'border-neutral-300 dark:border-neutral-700',
-          'focus-within:border-blue-500 dark:focus-within:border-blue-400 focus-within:ring-blue-500/20',
+          'focus-within:border-primary-500 dark:focus-within:border-primary-400 focus-within:ring-primary-500/20',
         ].join(' '),
         filled: [
           'border border-transparent bg-neutral-100 dark:bg-neutral-800',
           'focus-within:bg-white dark:focus-within:bg-neutral-900',
-          'focus-within:border-blue-500 dark:focus-within:border-blue-400 focus-within:ring-blue-500/20',
+          'focus-within:border-primary-500 dark:focus-within:border-primary-400 focus-within:ring-primary-500/20',
         ].join(' '),
         ghost: [
           'border border-transparent bg-transparent',
           'hover:bg-neutral-50 dark:hover:bg-neutral-800/60',
           'focus-within:bg-white dark:focus-within:bg-neutral-900',
-          'focus-within:border-blue-500 dark:focus-within:border-blue-400 focus-within:ring-blue-500/20',
+          'focus-within:border-primary-500 dark:focus-within:border-primary-400 focus-within:ring-primary-500/20',
         ].join(' '),
         underlined: [
           'rounded-none! border-b border-transparent bg-transparent',
           'border-b-neutral-300 dark:border-b-neutral-700',
-          'focus-within:border-b-blue-500 dark:focus-within:border-b-blue-400 focus-within:ring-0',
+          'focus-within:border-b-primary-500 dark:focus-within:border-b-primary-400 focus-within:ring-0',
         ].join(' '),
       },
       size: {
@@ -51,16 +51,16 @@ export const inputWrapperVariants = cva(
       state: {
         default: '',
         error: [
-          '!border-red-500 dark:!border-red-400',
-          'focus-within:!ring-red-500/20 focus-within:!border-red-500 dark:focus-within:!border-red-400',
+          '!border-danger-500 dark:!border-danger-400',
+          'focus-within:!ring-danger-500/20 focus-within:!border-danger-500 dark:focus-within:!border-danger-400',
         ].join(' '),
         warning: [
-          '!border-amber-500 dark:!border-amber-400',
-          'focus-within:!ring-amber-500/20 focus-within:!border-amber-500 dark:focus-within:!border-amber-400',
+          '!border-warning-500 dark:!border-warning-400',
+          'focus-within:!ring-warning-500/20 focus-within:!border-warning-500 dark:focus-within:!border-warning-400',
         ].join(' '),
         success: [
-          '!border-emerald-500 dark:!border-emerald-400',
-          'focus-within:!ring-emerald-500/20 focus-within:!border-emerald-500 dark:focus-within:!border-emerald-400',
+          '!border-success-500 dark:!border-success-400',
+          'focus-within:!ring-success-500/20 focus-within:!border-success-500 dark:focus-within:!border-success-400',
         ].join(' '),
         disabled:
           'opacity-60 cursor-not-allowed pointer-events-none bg-neutral-100 dark:bg-neutral-800',
@@ -95,8 +95,9 @@ export const inputBaseVariants = cva(
 /** Shared slot styles for icons, prefix text, and suffix text. */
 export const inputSlotVariants = {
   icon: 'shrink-0 text-neutral-400 dark:text-neutral-500 pointer-events-none',
+  // pointer-events-auto: action buttons may be passed inside `icon` slots, which disable pointer events.
   actionIcon:
-    'shrink-0 text-neutral-400 dark:text-neutral-500 cursor-pointer transition-colors duration-150 hover:text-neutral-600 dark:hover:text-neutral-300',
+    'pointer-events-auto shrink-0 rounded-sm text-neutral-400 dark:text-neutral-500 cursor-pointer transition-colors duration-150 hover:text-neutral-600 dark:hover:text-neutral-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
   prefix:
     'shrink-0 select-none whitespace-nowrap text-neutral-500 dark:text-neutral-400',
   suffix:

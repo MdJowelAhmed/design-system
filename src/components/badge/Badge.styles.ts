@@ -5,16 +5,17 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
-        solid: 'bg-blue-600 text-white dark:bg-blue-500',
-        soft: 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300',
+        solid: 'bg-primary-600 text-white dark:bg-primary-500',
+        soft: 'bg-primary-50 text-primary-700 dark:bg-primary-950/60 dark:text-primary-300',
         outline:
           'border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300',
+        info: 'bg-info-50 text-info-700 dark:bg-info-950/60 dark:text-info-300 border border-info-200 dark:border-info-800',
         success:
-          'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800',
+          'bg-success-50 text-success-700 dark:bg-success-950/60 dark:text-success-300 border border-success-200 dark:border-success-800',
         warning:
-          'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800',
+          'bg-warning-50 text-warning-700 dark:bg-warning-950/60 dark:text-warning-300 border border-warning-200 dark:border-warning-800',
         danger:
-          'bg-red-50 text-red-700 dark:bg-red-950/60 dark:text-red-300 border border-red-200 dark:border-red-800',
+          'bg-danger-50 text-danger-700 dark:bg-danger-950/60 dark:text-danger-300 border border-danger-200 dark:border-danger-800',
         neutral:
           'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
       },

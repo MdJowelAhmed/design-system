@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import type { FileStatus } from './FileUploader.types';
 import { Progress } from '../progress';
@@ -15,7 +13,7 @@ export const FileProgress = forwardRef<HTMLDivElement, FileProgressProps>(
   ({ status = 'idle', progress = 0, error, className, ...props }, ref) => {
     if (status === 'error') {
       return (
-        <p className="mt-1 text-xs font-medium text-rose-700 dark:text-rose-400">
+        <p className="text-danger-700 dark:text-danger-400 mt-1 text-xs font-medium">
           {error ?? 'Upload failed'}
         </p>
       );

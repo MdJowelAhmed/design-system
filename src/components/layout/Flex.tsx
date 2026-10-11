@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 import { Stack } from './Stack';
 import type { FlexProps } from './Layout.types';

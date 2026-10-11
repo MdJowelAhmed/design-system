@@ -36,9 +36,9 @@ export const headingVariants = cva(
         primary: 'text-primary-600 dark:text-primary-400',
         secondary: 'text-secondary-600 dark:text-secondary-400',
         accent: 'text-accent-600 dark:text-accent-400',
-        danger: 'text-red-600 dark:text-red-400',
-        success: 'text-emerald-700 dark:text-emerald-400',
-        warning: 'text-amber-700 dark:text-amber-400',
+        danger: 'text-danger-600 dark:text-danger-400',
+        success: 'text-success-700 dark:text-success-400',
+        warning: 'text-warning-700 dark:text-warning-400',
         white: 'text-white',
       },
       truncate: {

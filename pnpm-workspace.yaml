@@ -1,0 +1,3 @@
+allowBuilds:
+  # Ships prebuilt binaries; its install script only compiles a fallback from source.
+  '@parcel/watcher': false
